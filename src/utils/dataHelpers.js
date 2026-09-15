@@ -68,6 +68,30 @@ export function computeKPIs(products) {
   }
 }
 
+export function computeMonthlyAverages(products) {
+  const count = products.length || 1
+  const round1 = (n) => Math.round(n * 10) / 10
+  const sellThrough = [0, 0, 0]
+  const returnRate = [0, 0, 0]
+  let targetSum = 0
+
+  products.forEach((p) => {
+    getMonthlySellThrough(p).forEach((v, i) => {
+      sellThrough[i] += v
+    })
+    getMonthlyReturnRate(p).forEach((v, i) => {
+      returnRate[i] += v
+    })
+    targetSum += p.sell_through_target_pct
+  })
+
+  return {
+    sellThrough: sellThrough.map((v) => round1(v / count)),
+    returnRate: returnRate.map((v) => round1(v / count)),
+    sellThroughTarget: round1(targetSum / count),
+  }
+}
+
 export function formatPct(value, digits = 0) {
   return `${value.toFixed(digits)}%`
 }

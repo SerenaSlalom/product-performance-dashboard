@@ -48,24 +48,33 @@ Decisions made while building components that the brief left open.
   supplied `maeven_logo_v3_final.html` asset, colored to the design system's
   ink token instead of pure black.
 
-## `MiniTrendBars` (`ProductRow` Sell-Through / Return Rate columns)
-- Stakeholder feedback asked to replace the flat percentage text in these two
-  columns with charts broken out by month of the active season. Neither field
-  has real monthly data in `assortment.json`, so:
-  - **Sell-Through**: reuses the existing 6-week `sell_through_trend` array,
-    sampling weeks 2/4/6 as three month-end snapshots
-    (`getMonthlySellThrough`). Week 6 always equals the row's authoritative
-    `sell_through_pct`, so the chart's current-month bar never disagrees with
-    the KPI tiles or sorting.
+## `MiniTrendBars`
+- First iteration put a monthly bar chart in each table row for Sell-Through
+  and Return Rate; a follow-up round of feedback moved the charts up to the
+  **Average Sell-Through Rate** and **Average Return Rate** KPI tiles instead
+  (an aggregate-across-all-products trend, matching the design system's
+  "vl-kpi" signature sparkline treatment) and put the table columns back to
+  plain percentages. `MiniTrendBars` now takes a `size` (`sm`/`md`) and `dark`
+  prop so the same component serves both the dense table context (unused for
+  now, kept for potential reuse) and the larger KPI-tile context on the dark
+  accent tile.
+- Neither Sell-Through nor Return Rate has real monthly data in
+  `assortment.json`, so the KPI trend is derived, then averaged across all
+  products (`computeMonthlyAverages` in `dataHelpers.js`):
+  - **Sell-Through**: reuses the existing 6-week `sell_through_trend` array
+    per product, sampling weeks 2/4/6 as three month-end snapshots
+    (`getMonthlySellThrough`). Week 6 always equals that product's
+    `sell_through_pct`, so the averaged current-month bar always matches the
+    tile's headline "46%" value exactly.
   - **Return Rate**: has no trend array at all, only a final `return_rate_pct`.
-    `getMonthlyReturnRate` synthesizes a plausible ramp (55% → 80% → 100% of
-    the final value) rather than inventing new JSON fields — the final bar
-    still always equals the real `return_rate_pct`.
+    `getMonthlyReturnRate` synthesizes a plausible per-product ramp (55% → 80%
+    → 100% of the final value) rather than inventing new JSON fields — the
+    averaged final bar still always equals the headline avg return rate.
   - Month labels are hardcoded to `ACTIVE_SEASON_MONTHS` (Sep/Oct/Nov) since
-    only Fall 2026 has row data; other seasons never render a row.
-  - The sell-through chart keeps a dashed target line (`sell_through_target_pct`)
-    since that comparison was the main thing lost by dropping the "/ NN% plan"
-    text; return rate has no equivalent target in the brief, so it's omitted there.
+    only Fall 2026 has data; the tile isn't season-aware.
+  - The sell-through tile keeps a dashed target line (average
+    `sell_through_target_pct` across products); return rate has no equivalent
+    target in the brief, so it's omitted there.
 - The Season filter was expanded from 2 to 4 options spanning the trailing
   year (`Winter 2025` → `Fall 2026`) per feedback to "filter by season over
   the past year." Only `Fall 2026` (`ACTIVE_SEASON`) has real rows; the other

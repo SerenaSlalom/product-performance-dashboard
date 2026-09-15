@@ -1,16 +1,7 @@
 import { ChevronDown, Star, Check } from 'lucide-react'
 import StatusBadge from './StatusBadge'
 import ProductDetailPanel from './ProductDetailPanel'
-import MiniTrendBars from './MiniTrendBars'
-import {
-  getSizeCurveStatus,
-  getTopReturnReason,
-  getSentimentTone,
-  isAtRisk,
-  getMonthlySellThrough,
-  getMonthlyReturnRate,
-  ACTIVE_SEASON_MONTHS,
-} from '../utils/dataHelpers'
+import { getSizeCurveStatus, getTopReturnReason, getSentimentTone, isAtRisk } from '../utils/dataHelpers'
 
 const SENTIMENT_TEXT = {
   success: 'text-success',
@@ -50,14 +41,12 @@ export default function ProductRow({ product, isExpanded, onToggle, reviewed, on
         </td>
         <td className="px-3 py-3 text-[13px] text-ink">{product.category}</td>
         <td className="px-3 py-3">
-          <div className="flex items-center gap-1.5">
-            <MiniTrendBars
-              values={getMonthlySellThrough(product)}
-              labels={ACTIVE_SEASON_MONTHS}
-              target={product.sell_through_target_pct}
-              color="var(--color-accent-deep)"
-            />
-            {atRisk && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-danger" title="At risk" />}
+          <div className="flex items-center gap-2">
+            <span className="font-mono-tab text-[13.5px] font-semibold text-ink">
+              {product.sell_through_pct}%
+            </span>
+            <span className="text-[11px] text-muted">/ {product.sell_through_target_pct}% plan</span>
+            {atRisk && <span className="h-1.5 w-1.5 rounded-full bg-danger" title="At risk" />}
           </div>
         </td>
         <td className="px-3 py-3 text-[12.5px] text-muted">
@@ -74,13 +63,7 @@ export default function ProductRow({ product, isExpanded, onToggle, reviewed, on
           )}
         </td>
         <td className="px-3 py-3 font-mono-tab text-[13px] text-ink">{product.weeks_of_supply}w</td>
-        <td className="px-3 py-3">
-          <MiniTrendBars
-            values={getMonthlyReturnRate(product)}
-            labels={ACTIVE_SEASON_MONTHS}
-            color="var(--color-danger)"
-          />
-        </td>
+        <td className="px-3 py-3 font-mono-tab text-[13px] text-ink">{product.return_rate_pct.toFixed(1)}%</td>
         <td className="px-3 py-3 text-[12.5px] text-muted">{topReturnReason}</td>
         <td className="px-3 py-3">
           <div className="flex items-center gap-1">

@@ -4,7 +4,7 @@ import TopBar from './components/TopBar'
 import KPITile from './components/KPITile'
 import ProductTable from './components/ProductTable'
 import assortment from './data/assortment.json'
-import { computeKPIs, formatPct, ACTIVE_SEASON } from './utils/dataHelpers'
+import { computeKPIs, computeMonthlyAverages, formatPct, ACTIVE_SEASON, ACTIVE_SEASON_MONTHS } from './utils/dataHelpers'
 
 export default function App() {
   const [season, setSeason] = useState(ACTIVE_SEASON)
@@ -15,6 +15,7 @@ export default function App() {
   const [reviewedIds, setReviewedIds] = useState(new Set())
 
   const kpis = useMemo(() => computeKPIs(assortment), [])
+  const monthlyAverages = useMemo(() => computeMonthlyAverages(assortment), [])
 
   function handleToggleCategory(category) {
     if (category === null) {
@@ -64,6 +65,13 @@ export default function App() {
             sublabel="Across all active styles"
             icon={TrendingUp}
             accent
+            trend={{
+              values: monthlyAverages.sellThrough,
+              labels: ACTIVE_SEASON_MONTHS,
+              target: monthlyAverages.sellThroughTarget,
+              color: 'var(--color-accent)',
+              formatValue: (v) => formatPct(v, 0),
+            }}
           />
           <KPITile
             label="Styles At Risk"
@@ -77,6 +85,12 @@ export default function App() {
             value={formatPct(kpis.avgReturnRate, 1)}
             sublabel="Returns as % of units sold"
             icon={RotateCcw}
+            trend={{
+              values: monthlyAverages.returnRate,
+              labels: ACTIVE_SEASON_MONTHS,
+              color: 'var(--color-danger)',
+              formatValue: (v) => formatPct(v, 1),
+            }}
           />
           <KPITile
             label="Average Sentiment Score"
