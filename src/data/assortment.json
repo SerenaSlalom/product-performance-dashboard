@@ -4,19 +4,41 @@
     "name": "Momentum Training Tank",
     "category": "Training Tops",
     "colorway": "Black",
-    "image_url": "https://picsum.photos/seed/ml-001/300/300",
+    "image_url": "https://images.unsplash.com/photo-1602192405339-2d9e2e34a972?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 41,
     "sell_through_target_pct": 55,
-    "sell_through_trend": [12, 19, 26, 31, 36, 41],
+    "sell_through_trend": [
+      12,
+      19,
+      26,
+      31,
+      36,
+      41
+    ],
     "markdown_depth_pct": 15,
     "markdown_weeks_ago": 2,
     "weeks_of_supply": 14,
     "size_curve": {
-      "XS": { "purchased": 180, "sold": 92 },
-      "S": { "purchased": 220, "sold": 128 },
-      "M": { "purchased": 240, "sold": 88 },
-      "L": { "purchased": 200, "sold": 61 },
-      "XL": { "purchased": 140, "sold": 39 }
+      "XS": {
+        "purchased": 180,
+        "sold": 92
+      },
+      "S": {
+        "purchased": 220,
+        "sold": 128
+      },
+      "M": {
+        "purchased": 240,
+        "sold": 88
+      },
+      "L": {
+        "purchased": 200,
+        "sold": 61
+      },
+      "XL": {
+        "purchased": 140,
+        "sold": 39
+      }
     },
     "return_rate_pct": 18.4,
     "return_reasons": {
@@ -30,24 +52,41 @@
     "reviews": {
       "avg_rating": 3.1,
       "count": 64,
-      "positive_themes": ["Great fabric", "Flattering cut", "Good for hot yoga"],
-      "negative_themes": ["Runs small in the shoulders", "Armholes too tight", "Sizes up needed"],
+      "positive_themes": [
+        "Great fabric",
+        "Flattering cut",
+        "Good for hot yoga"
+      ],
+      "negative_themes": [
+        "Runs small in the shoulders",
+        "Armholes too tight",
+        "Sizes up needed"
+      ],
       "excerpts": [
-        { "rating": 2, "text": "Love the print but I had to size up two sizes to get the armholes to fit." },
-        { "rating": 4, "text": "Fabric is soft and breathable, just order bigger than usual." },
-        { "rating": 2, "text": "Shoulders are cut so narrow it feels restrictive during overhead moves." }
+        {
+          "rating": 2,
+          "text": "Love the print but I had to size up two sizes to get the armholes to fit."
+        },
+        {
+          "rating": 4,
+          "text": "Fabric is soft and breathable, just order bigger than usual."
+        },
+        {
+          "rating": 2,
+          "text": "Shoulders are cut so narrow it feels restrictive during overhead moves."
+        }
       ]
     },
     "ai_insight": {
       "status": "action_needed",
-      "summary": "Momentum Tank is running well below plan and the reason is clear: the shoulder and armhole cut is fitting small, and customers are telling us so directly. Sell-through is 14 points behind target at week 6, and the size curve shows M/L/XL sitting on shelves while XS and S sold through fastest — the opposite of a healthy curve for this fit. A first markdown already went out two weeks ago without moving the needle much.",
+      "summary": "Momentum Tank is running well below plan and the reason is clear: the shoulder and armhole cut is fitting small, and customers are telling us so directly. Sell-through is 14 points behind target at week 6, and the size curve shows M/L/XL sitting on shelves while XS and S sold through fastest \u2014 the opposite of a healthy curve for this fit. A first markdown already went out two weeks ago without moving the needle much.",
       "signals": [
         "Return rate is 2.1x the Training Tops category average, driven almost entirely by Fit and Size",
         "67% of negative review themes reference sizing, specifically narrow shoulders and armholes",
         "Sell-through is 14 points below plan at week 6 despite an existing 15% markdown",
         "M/L/XL sold-through rate is under half the rate of XS/S"
       ],
-      "recommendation": "Update the size chart and product copy to flag the narrow armhole fit now, and take an additional 10% markdown on M–XL to clear remaining units before it becomes a deeper end-of-season problem."
+      "recommendation": "Update the size chart and product copy to flag the narrow armhole fit now, and take an additional 10% markdown on M\u2013XL to clear remaining units before it becomes a deeper end-of-season problem."
     }
   },
   {
@@ -55,19 +94,41 @@
     "name": "Velocity Racerback Bra",
     "category": "Sports Bras",
     "colorway": "Coral",
-    "image_url": "https://picsum.photos/seed/ml-002/300/300",
+    "image_url": "https://images.unsplash.com/photo-1635862641294-5d3d7438c942?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 63,
     "sell_through_target_pct": 55,
-    "sell_through_trend": [10, 22, 34, 45, 55, 63],
+    "sell_through_trend": [
+      10,
+      22,
+      34,
+      45,
+      55,
+      63
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 7,
     "size_curve": {
-      "XS": { "purchased": 150, "sold": 98 },
-      "S": { "purchased": 210, "sold": 141 },
-      "M": { "purchased": 230, "sold": 152 },
-      "L": { "purchased": 190, "sold": 119 },
-      "XL": { "purchased": 130, "sold": 79 }
+      "XS": {
+        "purchased": 150,
+        "sold": 98
+      },
+      "S": {
+        "purchased": 210,
+        "sold": 141
+      },
+      "M": {
+        "purchased": 230,
+        "sold": 152
+      },
+      "L": {
+        "purchased": 190,
+        "sold": 119
+      },
+      "XL": {
+        "purchased": 130,
+        "sold": 79
+      }
     },
     "return_rate_pct": 4.2,
     "return_reasons": {
@@ -81,24 +142,40 @@
     "reviews": {
       "avg_rating": 4.6,
       "count": 91,
-      "positive_themes": ["True to size", "Great support for running", "Color is vibrant"],
-      "negative_themes": ["Straps could be wider", "Wish it came in more colors"],
+      "positive_themes": [
+        "True to size",
+        "Great support for running",
+        "Color is vibrant"
+      ],
+      "negative_themes": [
+        "Straps could be wider",
+        "Wish it came in more colors"
+      ],
       "excerpts": [
-        { "rating": 5, "text": "Best racerback I've owned, zero bounce on my long runs." },
-        { "rating": 5, "text": "True to size and the coral is even better in person." },
-        { "rating": 4, "text": "Love it, just wish the straps were a touch wider for high-impact days." }
+        {
+          "rating": 5,
+          "text": "Best racerback I've owned, zero bounce on my long runs."
+        },
+        {
+          "rating": 5,
+          "text": "True to size and the coral is even better in person."
+        },
+        {
+          "rating": 4,
+          "text": "Love it, just wish the straps were a touch wider for high-impact days."
+        }
       ]
     },
     "ai_insight": {
       "status": "on_track",
-      "summary": "Velocity Bra is outperforming plan by 8 points at week 6 with a clean, even sell-through across the size curve and very low returns. Reviews are strong and consistent, calling out true-to-size fit and support — exactly what you want to see paired with this sales velocity. At current pace it sells out in about 7 weeks.",
+      "summary": "Velocity Bra is outperforming plan by 8 points at week 6 with a clean, even sell-through across the size curve and very low returns. Reviews are strong and consistent, calling out true-to-size fit and support \u2014 exactly what you want to see paired with this sales velocity. At current pace it sells out in about 7 weeks.",
       "signals": [
         "Sell-through is 8 points above plan at week 6",
         "Return rate is well under the Sports Bras category average, with most returns being Changed Mind rather than product issues",
         "Review sentiment is 4.6 stars across 91 reviews with consistent true-to-size feedback",
         "Weeks of supply is trending short at 7 weeks given current velocity"
       ],
-      "recommendation": "No action needed. Style is tracking 8 points above plan with strong sentiment — flag for a reorder conversation if you want to extend availability past week 13."
+      "recommendation": "No action needed. Style is tracking 8 points above plan with strong sentiment \u2014 flag for a reorder conversation if you want to extend availability past week 13."
     }
   },
   {
@@ -106,19 +183,41 @@
     "name": "Ascent High-Waist Legging",
     "category": "Leggings",
     "colorway": "Charcoal",
-    "image_url": "https://picsum.photos/seed/ml-003/300/300",
+    "image_url": "https://images.unsplash.com/photo-1580041680794-43b42ff9046c?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 68,
     "sell_through_target_pct": 58,
-    "sell_through_trend": [14, 27, 39, 50, 60, 68],
+    "sell_through_trend": [
+      14,
+      27,
+      39,
+      50,
+      60,
+      68
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 5,
     "size_curve": {
-      "XS": { "purchased": 160, "sold": 118 },
-      "S": { "purchased": 230, "sold": 176 },
-      "M": { "purchased": 250, "sold": 201 },
-      "L": { "purchased": 210, "sold": 168 },
-      "XL": { "purchased": 150, "sold": 112 }
+      "XS": {
+        "purchased": 160,
+        "sold": 118
+      },
+      "S": {
+        "purchased": 230,
+        "sold": 176
+      },
+      "M": {
+        "purchased": 250,
+        "sold": 201
+      },
+      "L": {
+        "purchased": 210,
+        "sold": 168
+      },
+      "XL": {
+        "purchased": 150,
+        "sold": 112
+      }
     },
     "return_rate_pct": 3.8,
     "return_reasons": {
@@ -132,24 +231,40 @@
     "reviews": {
       "avg_rating": 4.8,
       "count": 143,
-      "positive_themes": ["Squat-proof", "True to size", "Flattering high waistband"],
-      "negative_themes": ["Wish there were more colors", "Slightly long for petite frames"],
+      "positive_themes": [
+        "Squat-proof",
+        "True to size",
+        "Flattering high waistband"
+      ],
+      "negative_themes": [
+        "Wish there were more colors",
+        "Slightly long for petite frames"
+      ],
       "excerpts": [
-        { "rating": 5, "text": "These are squat-proof and the waistband doesn't roll down, obsessed." },
-        { "rating": 5, "text": "Bought a second pair the week after my first, true to size and so flattering." },
-        { "rating": 4, "text": "Great legging, just a little long on me at 5'2\"." }
+        {
+          "rating": 5,
+          "text": "These are squat-proof and the waistband doesn't roll down, obsessed."
+        },
+        {
+          "rating": 5,
+          "text": "Bought a second pair the week after my first, true to size and so flattering."
+        },
+        {
+          "rating": 4,
+          "text": "Great legging, just a little long on me at 5'2\"."
+        }
       ]
     },
     "ai_insight": {
       "status": "on_track",
-      "summary": "Ascent Legging is the strongest performer in the assortment, tracking 10 points above plan with a nearly even sell-through across every size and best-in-class sentiment. Weeks of supply is now down to 5, which is the more pressing signal here — this style is on pace to sell out well before the end of the season.",
+      "summary": "Ascent Legging is the strongest performer in the assortment, tracking 10 points above plan with a nearly even sell-through across every size and best-in-class sentiment. Weeks of supply is now down to 5, which is the more pressing signal here \u2014 this style is on pace to sell out well before the end of the season.",
       "signals": [
         "Sell-through is 10 points above plan at week 6, the highest margin in the assortment",
         "Return rate is 3.8%, roughly half the Leggings category average",
         "Review sentiment is 4.8 stars across 143 reviews with no recurring negative theme",
         "Weeks of supply has dropped to 5, the shortest runway among on-track styles"
       ],
-      "recommendation": "Place a size-run reorder now — at current velocity this style sells out around week 11, well before the season ends, and demand shows no signs of slowing."
+      "recommendation": "Place a size-run reorder now \u2014 at current velocity this style sells out around week 11, well before the season ends, and demand shows no signs of slowing."
     }
   },
   {
@@ -157,19 +272,41 @@
     "name": "Flux Studio Short",
     "category": "Shorts",
     "colorway": "Sage",
-    "image_url": "https://picsum.photos/seed/ml-004/300/300",
+    "image_url": "https://images.unsplash.com/photo-1789110519919-ac034e2a0986?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 47,
     "sell_through_target_pct": 50,
-    "sell_through_trend": [9, 18, 27, 35, 41, 47],
+    "sell_through_trend": [
+      9,
+      18,
+      27,
+      35,
+      41,
+      47
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 9,
     "size_curve": {
-      "XS": { "purchased": 140, "sold": 74 },
-      "S": { "purchased": 190, "sold": 101 },
-      "M": { "purchased": 200, "sold": 104 },
-      "L": { "purchased": 170, "sold": 82 },
-      "XL": { "purchased": 120, "sold": 55 }
+      "XS": {
+        "purchased": 140,
+        "sold": 74
+      },
+      "S": {
+        "purchased": 190,
+        "sold": 101
+      },
+      "M": {
+        "purchased": 200,
+        "sold": 104
+      },
+      "L": {
+        "purchased": 170,
+        "sold": 82
+      },
+      "XL": {
+        "purchased": 120,
+        "sold": 55
+      }
     },
     "return_rate_pct": 9.6,
     "return_reasons": {
@@ -183,17 +320,33 @@
     "reviews": {
       "avg_rating": 3.9,
       "count": 52,
-      "positive_themes": ["Comfortable for studio classes", "Good pocket size", "Lightweight fabric"],
-      "negative_themes": ["Sage looks more olive in photos", "Inseam shorter than expected"],
+      "positive_themes": [
+        "Comfortable for studio classes",
+        "Good pocket size",
+        "Lightweight fabric"
+      ],
+      "negative_themes": [
+        "Sage looks more olive in photos",
+        "Inseam shorter than expected"
+      ],
       "excerpts": [
-        { "rating": 3, "text": "Cute short but the color is more olive than the sage shown online." },
-        { "rating": 4, "text": "Great for barre, love the side pocket." },
-        { "rating": 3, "text": "Runs a little short in the inseam compared to the product photo." }
+        {
+          "rating": 3,
+          "text": "Cute short but the color is more olive than the sage shown online."
+        },
+        {
+          "rating": 4,
+          "text": "Great for barre, love the side pocket."
+        },
+        {
+          "rating": 3,
+          "text": "Runs a little short in the inseam compared to the product photo."
+        }
       ]
     },
     "ai_insight": {
       "status": "watch",
-      "summary": "Flux Short is tracking just 3 points behind plan, which isn't urgent yet, but the return reasons are worth watching — Color/Image Mismatch is elevated and reviews confirm the product photography reads lighter than the actual sage colorway. If unaddressed this could keep suppressing sell-through as word spreads in reviews.",
+      "summary": "Flux Short is tracking just 3 points behind plan, which isn't urgent yet, but the return reasons are worth watching \u2014 Color/Image Mismatch is elevated and reviews confirm the product photography reads lighter than the actual sage colorway. If unaddressed this could keep suppressing sell-through as word spreads in reviews.",
       "signals": [
         "Sell-through is 3 points below plan at week 6, a manageable gap for now",
         "Color/Image Mismatch accounts for 14% of returns, above the category norm of roughly 6%",
@@ -208,19 +361,41 @@
     "name": "Aria Seamless Bra",
     "category": "Sports Bras",
     "colorway": "Blush",
-    "image_url": "https://picsum.photos/seed/ml-005/300/300",
+    "image_url": "https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 29,
     "sell_through_target_pct": 52,
-    "sell_through_trend": [8, 13, 17, 21, 25, 29],
+    "sell_through_trend": [
+      8,
+      13,
+      17,
+      21,
+      25,
+      29
+    ],
     "markdown_depth_pct": 20,
     "markdown_weeks_ago": 3,
     "weeks_of_supply": 19,
     "size_curve": {
-      "XS": { "purchased": 130, "sold": 34 },
-      "S": { "purchased": 190, "sold": 52 },
-      "M": { "purchased": 210, "sold": 61 },
-      "L": { "purchased": 180, "sold": 44 },
-      "XL": { "purchased": 120, "sold": 27 }
+      "XS": {
+        "purchased": 130,
+        "sold": 34
+      },
+      "S": {
+        "purchased": 190,
+        "sold": 52
+      },
+      "M": {
+        "purchased": 210,
+        "sold": 61
+      },
+      "L": {
+        "purchased": 180,
+        "sold": 44
+      },
+      "XL": {
+        "purchased": 120,
+        "sold": 27
+      }
     },
     "return_rate_pct": 22.7,
     "return_reasons": {
@@ -234,24 +409,41 @@
     "reviews": {
       "avg_rating": 2.7,
       "count": 78,
-      "positive_themes": ["Soft seamless fabric", "Nice for low-impact wear", "Pretty color"],
-      "negative_themes": ["Band runs way too small", "No support for larger chest sizes", "Straps dig in"],
+      "positive_themes": [
+        "Soft seamless fabric",
+        "Nice for low-impact wear",
+        "Pretty color"
+      ],
+      "negative_themes": [
+        "Band runs way too small",
+        "No support for larger chest sizes",
+        "Straps dig in"
+      ],
       "excerpts": [
-        { "rating": 2, "text": "The band is nowhere near true to size, had to return for two sizes up." },
-        { "rating": 2, "text": "Zero support above a C cup, straps dig in within an hour." },
-        { "rating": 3, "text": "Fabric feels great but the fit just isn't there for my chest size." }
+        {
+          "rating": 2,
+          "text": "The band is nowhere near true to size, had to return for two sizes up."
+        },
+        {
+          "rating": 2,
+          "text": "Zero support above a C cup, straps dig in within an hour."
+        },
+        {
+          "rating": 3,
+          "text": "Fabric feels great but the fit just isn't there for my chest size."
+        }
       ]
     },
     "ai_insight": {
       "status": "action_needed",
-      "summary": "Aria Bra is the weakest performer in the assortment. Sell-through is 23 points behind plan even after a 20% markdown three weeks ago, and the return rate is more than triple the category average, almost entirely driven by band sizing that customers say runs small. At this velocity, weeks of supply has stretched to 19 weeks — this style will not sell through by season end without a bigger intervention.",
+      "summary": "Aria Bra is the weakest performer in the assortment. Sell-through is 23 points behind plan even after a 20% markdown three weeks ago, and the return rate is more than triple the category average, almost entirely driven by band sizing that customers say runs small. At this velocity, weeks of supply has stretched to 19 weeks \u2014 this style will not sell through by season end without a bigger intervention.",
       "signals": [
         "Return rate is 3.2x the Sports Bras category average, 61% of it tagged Fit",
         "Sell-through is 23 points below plan at week 6, despite an existing 20% markdown",
         "Reviews consistently describe the band as running small and unsupportive above a C cup",
         "Weeks of supply has grown to 19, more than double any other style in the assortment"
       ],
-      "recommendation": "Take an additional markdown to 35–40% off now — the fit issue is a design-level problem that copy or photography can't fix mid-season, and full-price sell-through target is no longer achievable."
+      "recommendation": "Take an additional markdown to 35\u201340% off now \u2014 the fit issue is a design-level problem that copy or photography can't fix mid-season, and full-price sell-through target is no longer achievable."
     }
   },
   {
@@ -259,19 +451,41 @@
     "name": "Summit Windbreaker",
     "category": "Outerwear",
     "colorway": "Navy",
-    "image_url": "https://picsum.photos/seed/ml-006/300/300",
+    "image_url": "https://images.unsplash.com/photo-1665407415286-2b29719f0daa?w=300&h=300&fit=crop&crop=bottom,left&auto=format&q=80",
     "sell_through_pct": 44,
     "sell_through_target_pct": 48,
-    "sell_through_trend": [7, 15, 24, 32, 38, 44],
+    "sell_through_trend": [
+      7,
+      15,
+      24,
+      32,
+      38,
+      44
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 10,
     "size_curve": {
-      "XS": { "purchased": 90, "sold": 47 },
-      "S": { "purchased": 140, "sold": 71 },
-      "M": { "purchased": 160, "sold": 80 },
-      "L": { "purchased": 150, "sold": 72 },
-      "XL": { "purchased": 110, "sold": 51 }
+      "XS": {
+        "purchased": 90,
+        "sold": 47
+      },
+      "S": {
+        "purchased": 140,
+        "sold": 71
+      },
+      "M": {
+        "purchased": 160,
+        "sold": 80
+      },
+      "L": {
+        "purchased": 150,
+        "sold": 72
+      },
+      "XL": {
+        "purchased": 110,
+        "sold": 51
+      }
     },
     "return_rate_pct": 8.1,
     "return_reasons": {
@@ -285,17 +499,33 @@
     "reviews": {
       "avg_rating": 4.0,
       "count": 46,
-      "positive_themes": ["Packs down small", "Good wind protection", "Nice length"],
-      "negative_themes": ["Zipper feels flimsy", "Wish it had thumbholes"],
+      "positive_themes": [
+        "Packs down small",
+        "Good wind protection",
+        "Nice length"
+      ],
+      "negative_themes": [
+        "Zipper feels flimsy",
+        "Wish it had thumbholes"
+      ],
       "excerpts": [
-        { "rating": 4, "text": "Great packable jacket for travel, wind protection is solid." },
-        { "rating": 3, "text": "Love the fit but the zipper pull already feels loose after a few weeks." },
-        { "rating": 5, "text": "Perfect layering piece, wish it had thumbholes but not a dealbreaker." }
+        {
+          "rating": 4,
+          "text": "Great packable jacket for travel, wind protection is solid."
+        },
+        {
+          "rating": 3,
+          "text": "Love the fit but the zipper pull already feels loose after a few weeks."
+        },
+        {
+          "rating": 5,
+          "text": "Perfect layering piece, wish it had thumbholes but not a dealbreaker."
+        }
       ]
     },
     "ai_insight": {
       "status": "watch",
-      "summary": "Summit Windbreaker is tracking close to plan, just 4 points behind at week 6, so there's no urgent markdown case yet. The signal to watch is a rising share of Quality-related returns tied to zipper durability — it's not dominant yet but it's the kind of issue that tends to compound as more units are worn and washed.",
+      "summary": "Summit Windbreaker is tracking close to plan, just 4 points behind at week 6, so there's no urgent markdown case yet. The signal to watch is a rising share of Quality-related returns tied to zipper durability \u2014 it's not dominant yet but it's the kind of issue that tends to compound as more units are worn and washed.",
       "signals": [
         "Sell-through is 4 points below plan at week 6, within normal range",
         "Quality accounts for 20% of returns, tied to zipper pull durability specifically",
@@ -310,19 +540,41 @@
     "name": "Pulse Compression Legging",
     "category": "Leggings",
     "colorway": "Black",
-    "image_url": "https://picsum.photos/seed/ml-007/300/300",
+    "image_url": "https://images.unsplash.com/photo-1789110519393-2f292a378a3a?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 59,
     "sell_through_target_pct": 54,
-    "sell_through_trend": [11, 22, 33, 43, 51, 59],
+    "sell_through_trend": [
+      11,
+      22,
+      33,
+      43,
+      51,
+      59
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 8,
     "size_curve": {
-      "XS": { "purchased": 150, "sold": 96 },
-      "S": { "purchased": 220, "sold": 141 },
-      "M": { "purchased": 240, "sold": 156 },
-      "L": { "purchased": 200, "sold": 124 },
-      "XL": { "purchased": 140, "sold": 84 }
+      "XS": {
+        "purchased": 150,
+        "sold": 96
+      },
+      "S": {
+        "purchased": 220,
+        "sold": 141
+      },
+      "M": {
+        "purchased": 240,
+        "sold": 156
+      },
+      "L": {
+        "purchased": 200,
+        "sold": 124
+      },
+      "XL": {
+        "purchased": 140,
+        "sold": 84
+      }
     },
     "return_rate_pct": 5.1,
     "return_reasons": {
@@ -336,12 +588,28 @@
     "reviews": {
       "avg_rating": 4.5,
       "count": 108,
-      "positive_themes": ["Great compression without being tight", "True to size", "Doesn't pill"],
-      "negative_themes": ["Wish waistband was slightly higher", "Limited color options"],
+      "positive_themes": [
+        "Great compression without being tight",
+        "True to size",
+        "Doesn't pill"
+      ],
+      "negative_themes": [
+        "Wish waistband was slightly higher",
+        "Limited color options"
+      ],
       "excerpts": [
-        { "rating": 5, "text": "Perfect compression for lifting days, holds up wash after wash." },
-        { "rating": 5, "text": "True to size and the fabric hasn't pilled after two months of wear." },
-        { "rating": 4, "text": "Love these, just wish the waistband sat a touch higher." }
+        {
+          "rating": 5,
+          "text": "Perfect compression for lifting days, holds up wash after wash."
+        },
+        {
+          "rating": 5,
+          "text": "True to size and the fabric hasn't pilled after two months of wear."
+        },
+        {
+          "rating": 4,
+          "text": "Love these, just wish the waistband sat a touch higher."
+        }
       ]
     },
     "ai_insight": {
@@ -353,7 +621,7 @@
         "Reviews highlight durability and true-to-size fit as recurring positive themes",
         "Weeks of supply at 8 is healthy relative to remaining season length"
       ],
-      "recommendation": "No action needed. Style is tracking 5 points above plan with strong sentiment — continue monitoring at next check-in."
+      "recommendation": "No action needed. Style is tracking 5 points above plan with strong sentiment \u2014 continue monitoring at next check-in."
     }
   },
   {
@@ -361,19 +629,41 @@
     "name": "Drift Half-Zip Pullover",
     "category": "Outerwear",
     "colorway": "Heather Grey",
-    "image_url": "https://picsum.photos/seed/ml-008/300/300",
+    "image_url": "https://images.unsplash.com/photo-1716394216349-3d5c431195b2?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 33,
     "sell_through_target_pct": 50,
-    "sell_through_trend": [9, 15, 20, 25, 29, 33],
+    "sell_through_trend": [
+      9,
+      15,
+      20,
+      25,
+      29,
+      33
+    ],
     "markdown_depth_pct": 15,
     "markdown_weeks_ago": 2,
     "weeks_of_supply": 15,
     "size_curve": {
-      "XS": { "purchased": 100, "sold": 41 },
-      "S": { "purchased": 150, "sold": 62 },
-      "M": { "purchased": 170, "sold": 68 },
-      "L": { "purchased": 140, "sold": 53 },
-      "XL": { "purchased": 100, "sold": 36 }
+      "XS": {
+        "purchased": 100,
+        "sold": 41
+      },
+      "S": {
+        "purchased": 150,
+        "sold": 62
+      },
+      "M": {
+        "purchased": 170,
+        "sold": 68
+      },
+      "L": {
+        "purchased": 140,
+        "sold": 53
+      },
+      "XL": {
+        "purchased": 100,
+        "sold": 36
+      }
     },
     "return_rate_pct": 16.3,
     "return_reasons": {
@@ -387,12 +677,29 @@
     "reviews": {
       "avg_rating": 3.0,
       "count": 39,
-      "positive_themes": ["Soft brushed fabric", "Warm without being bulky", "Good for layering"],
-      "negative_themes": ["Color looks different in person", "Photographs much lighter than actual", "Muddier grey than expected"],
+      "positive_themes": [
+        "Soft brushed fabric",
+        "Warm without being bulky",
+        "Good for layering"
+      ],
+      "negative_themes": [
+        "Color looks different in person",
+        "Photographs much lighter than actual",
+        "Muddier grey than expected"
+      ],
       "excerpts": [
-        { "rating": 2, "text": "The photo shows a light heather grey but mine arrived almost charcoal." },
-        { "rating": 4, "text": "Fabric is cozy and warm, just be aware the color is darker than the site photo." },
-        { "rating": 2, "text": "Returned because the color looked nothing like the listing image." }
+        {
+          "rating": 2,
+          "text": "The photo shows a light heather grey but mine arrived almost charcoal."
+        },
+        {
+          "rating": 4,
+          "text": "Fabric is cozy and warm, just be aware the color is darker than the site photo."
+        },
+        {
+          "rating": 2,
+          "text": "Returned because the color looked nothing like the listing image."
+        }
       ]
     },
     "ai_insight": {
@@ -404,7 +711,7 @@
         "Sell-through is 17 points below plan at week 4 post-markdown",
         "Weeks of supply has climbed to 15 despite the existing 15% markdown"
       ],
-      "recommendation": "Rewrite product description to address fit — customer photos show the style photographs darker than product images. Reshoot or recolor-correct the primary product image before taking any further markdown."
+      "recommendation": "Rewrite product description to address fit \u2014 customer photos show the style photographs darker than product images. Reshoot or recolor-correct the primary product image before taking any further markdown."
     }
   },
   {
@@ -412,19 +719,41 @@
     "name": "Echo Studio Tank",
     "category": "Training Tops",
     "colorway": "White",
-    "image_url": "https://picsum.photos/seed/ml-009/300/300",
+    "image_url": "https://images.unsplash.com/photo-1759476531403-b1f88092f992?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 46,
     "sell_through_target_pct": 50,
-    "sell_through_trend": [10, 18, 26, 33, 40, 46],
+    "sell_through_trend": [
+      10,
+      18,
+      26,
+      33,
+      40,
+      46
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 9,
     "size_curve": {
-      "XS": { "purchased": 130, "sold": 79 },
-      "S": { "purchased": 180, "sold": 106 },
-      "M": { "purchased": 190, "sold": 104 },
-      "L": { "purchased": 160, "sold": 84 },
-      "XL": { "purchased": 110, "sold": 53 }
+      "XS": {
+        "purchased": 130,
+        "sold": 79
+      },
+      "S": {
+        "purchased": 180,
+        "sold": 106
+      },
+      "M": {
+        "purchased": 190,
+        "sold": 104
+      },
+      "L": {
+        "purchased": 160,
+        "sold": 84
+      },
+      "XL": {
+        "purchased": 110,
+        "sold": 53
+      }
     },
     "return_rate_pct": 7.4,
     "return_reasons": {
@@ -438,12 +767,28 @@
     "reviews": {
       "avg_rating": 4.1,
       "count": 57,
-      "positive_themes": ["Lightweight and breathable", "True to size", "Good for studio classes"],
-      "negative_themes": ["White is slightly sheer", "Some pilling after washing"],
+      "positive_themes": [
+        "Lightweight and breathable",
+        "True to size",
+        "Good for studio classes"
+      ],
+      "negative_themes": [
+        "White is slightly sheer",
+        "Some pilling after washing"
+      ],
       "excerpts": [
-        { "rating": 4, "text": "Comfortable and true to size, just a touch sheer so I layer a bra I like." },
-        { "rating": 4, "text": "Great for hot yoga, breathes really well." },
-        { "rating": 3, "text": "Started pilling under the arms after a few washes." }
+        {
+          "rating": 4,
+          "text": "Comfortable and true to size, just a touch sheer so I layer a bra I like."
+        },
+        {
+          "rating": 4,
+          "text": "Great for hot yoga, breathes really well."
+        },
+        {
+          "rating": 3,
+          "text": "Started pilling under the arms after a few washes."
+        }
       ]
     },
     "ai_insight": {
@@ -455,7 +800,7 @@
         "Sentiment remains solid at 4.1 stars across 57 reviews",
         "Weeks of supply is comfortable at 9 weeks"
       ],
-      "recommendation": "Monitor for now — no markdown needed. Flag pilling feedback to quality control if the return share climbs above 20% at the next check-in."
+      "recommendation": "Monitor for now \u2014 no markdown needed. Flag pilling feedback to quality control if the return share climbs above 20% at the next check-in."
     }
   },
   {
@@ -463,19 +808,41 @@
     "name": "Cadence Bike Short",
     "category": "Shorts",
     "colorway": "Black",
-    "image_url": "https://picsum.photos/seed/ml-010/300/300",
+    "image_url": "https://images.unsplash.com/photo-1628519492564-f9b926d1fc9a?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 65,
     "sell_through_target_pct": 56,
-    "sell_through_trend": [13, 25, 37, 48, 57, 65],
+    "sell_through_trend": [
+      13,
+      25,
+      37,
+      48,
+      57,
+      65
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 6,
     "size_curve": {
-      "XS": { "purchased": 140, "sold": 98 },
-      "S": { "purchased": 200, "sold": 142 },
-      "M": { "purchased": 220, "sold": 158 },
-      "L": { "purchased": 190, "sold": 133 },
-      "XL": { "purchased": 130, "sold": 88 }
+      "XS": {
+        "purchased": 140,
+        "sold": 98
+      },
+      "S": {
+        "purchased": 200,
+        "sold": 142
+      },
+      "M": {
+        "purchased": 220,
+        "sold": 158
+      },
+      "L": {
+        "purchased": 190,
+        "sold": 133
+      },
+      "XL": {
+        "purchased": 130,
+        "sold": 88
+      }
     },
     "return_rate_pct": 4.6,
     "return_reasons": {
@@ -489,12 +856,28 @@
     "reviews": {
       "avg_rating": 4.7,
       "count": 84,
-      "positive_themes": ["Perfect length", "No ride-up", "True to size"],
-      "negative_themes": ["Wish it had a phone pocket", "Limited color range"],
+      "positive_themes": [
+        "Perfect length",
+        "No ride-up",
+        "True to size"
+      ],
+      "negative_themes": [
+        "Wish it had a phone pocket",
+        "Limited color range"
+      ],
       "excerpts": [
-        { "rating": 5, "text": "Finally a bike short that doesn't ride up during spin class." },
-        { "rating": 5, "text": "True to size, perfect length, ordering a second pair." },
-        { "rating": 4, "text": "Love the fit, just wish there was a zip pocket for my phone." }
+        {
+          "rating": 5,
+          "text": "Finally a bike short that doesn't ride up during spin class."
+        },
+        {
+          "rating": 5,
+          "text": "True to size, perfect length, ordering a second pair."
+        },
+        {
+          "rating": 4,
+          "text": "Love the fit, just wish there was a zip pocket for my phone."
+        }
       ]
     },
     "ai_insight": {
@@ -506,7 +889,7 @@
         "Sentiment is 4.7 stars across 84 reviews with consistent praise for fit and length",
         "Weeks of supply has dropped to 6, the second-shortest runway in the assortment"
       ],
-      "recommendation": "No action needed. Style is tracking 9 points above plan with strong sentiment — consider a reorder to avoid a sellout gap before season end."
+      "recommendation": "No action needed. Style is tracking 9 points above plan with strong sentiment \u2014 consider a reorder to avoid a sellout gap before season end."
     }
   },
   {
@@ -514,19 +897,41 @@
     "name": "Solstice Crop Tank",
     "category": "Training Tops",
     "colorway": "Terracotta",
-    "image_url": "https://picsum.photos/seed/ml-011/300/300",
+    "image_url": "https://images.unsplash.com/photo-1789110521321-5884d515be75?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 42,
     "sell_through_target_pct": 48,
-    "sell_through_trend": [8, 16, 23, 30, 36, 42],
+    "sell_through_trend": [
+      8,
+      16,
+      23,
+      30,
+      36,
+      42
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 11,
     "size_curve": {
-      "XS": { "purchased": 150, "sold": 91 },
-      "S": { "purchased": 190, "sold": 108 },
-      "M": { "purchased": 180, "sold": 84 },
-      "L": { "purchased": 140, "sold": 51 },
-      "XL": { "purchased": 90, "sold": 27 }
+      "XS": {
+        "purchased": 150,
+        "sold": 91
+      },
+      "S": {
+        "purchased": 190,
+        "sold": 108
+      },
+      "M": {
+        "purchased": 180,
+        "sold": 84
+      },
+      "L": {
+        "purchased": 140,
+        "sold": 51
+      },
+      "XL": {
+        "purchased": 90,
+        "sold": 27
+      }
     },
     "return_rate_pct": 10.2,
     "return_reasons": {
@@ -540,12 +945,28 @@
     "reviews": {
       "avg_rating": 3.7,
       "count": 45,
-      "positive_themes": ["Cute crop length", "Nice terracotta color", "Good for layering"],
-      "negative_themes": ["Boxy fit in larger sizes", "Cropped shorter than expected"],
+      "positive_themes": [
+        "Cute crop length",
+        "Nice terracotta color",
+        "Good for layering"
+      ],
+      "negative_themes": [
+        "Boxy fit in larger sizes",
+        "Cropped shorter than expected"
+      ],
       "excerpts": [
-        { "rating": 4, "text": "Love the color, cropped a little shorter than I expected but still cute." },
-        { "rating": 3, "text": "Gets boxy in L and XL, doesn't flatter the same way as the smaller sizes." },
-        { "rating": 4, "text": "Great layering piece for the studio, true to size for me in S." }
+        {
+          "rating": 4,
+          "text": "Love the color, cropped a little shorter than I expected but still cute."
+        },
+        {
+          "rating": 3,
+          "text": "Gets boxy in L and XL, doesn't flatter the same way as the smaller sizes."
+        },
+        {
+          "rating": 4,
+          "text": "Great layering piece for the studio, true to size for me in S."
+        }
       ]
     },
     "ai_insight": {
@@ -565,19 +986,41 @@
     "name": "Nimbus Packable Jacket",
     "category": "Outerwear",
     "colorway": "Olive",
-    "image_url": "https://picsum.photos/seed/ml-012/300/300",
+    "image_url": "https://images.unsplash.com/photo-1617948053081-99416f60adae?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 24,
     "sell_through_target_pct": 46,
-    "sell_through_trend": [6, 10, 14, 18, 21, 24],
+    "sell_through_trend": [
+      6,
+      10,
+      14,
+      18,
+      21,
+      24
+    ],
     "markdown_depth_pct": 20,
     "markdown_weeks_ago": 4,
     "weeks_of_supply": 21,
     "size_curve": {
-      "XS": { "purchased": 90, "sold": 24 },
-      "S": { "purchased": 130, "sold": 34 },
-      "M": { "purchased": 150, "sold": 39 },
-      "L": { "purchased": 120, "sold": 29 },
-      "XL": { "purchased": 90, "sold": 19 }
+      "XS": {
+        "purchased": 90,
+        "sold": 24
+      },
+      "S": {
+        "purchased": 130,
+        "sold": 34
+      },
+      "M": {
+        "purchased": 150,
+        "sold": 39
+      },
+      "L": {
+        "purchased": 120,
+        "sold": 29
+      },
+      "XL": {
+        "purchased": 90,
+        "sold": 19
+      }
     },
     "return_rate_pct": 19.8,
     "return_reasons": {
@@ -591,12 +1034,29 @@
     "reviews": {
       "avg_rating": 2.5,
       "count": 33,
-      "positive_themes": ["Packs down very small", "Good for travel", "Nice olive shade"],
-      "negative_themes": ["Seams coming apart", "Zipper snags", "Fabric feels cheap for the price"],
+      "positive_themes": [
+        "Packs down very small",
+        "Good for travel",
+        "Nice olive shade"
+      ],
+      "negative_themes": [
+        "Seams coming apart",
+        "Zipper snags",
+        "Fabric feels cheap for the price"
+      ],
       "excerpts": [
-        { "rating": 1, "text": "Seam under the arm split after two wears, disappointed for the price." },
-        { "rating": 2, "text": "Zipper snags constantly and the fabric feels thinner than expected." },
-        { "rating": 2, "text": "Packs down nicely but the build quality doesn't match the price point." }
+        {
+          "rating": 1,
+          "text": "Seam under the arm split after two wears, disappointed for the price."
+        },
+        {
+          "rating": 2,
+          "text": "Zipper snags constantly and the fabric feels thinner than expected."
+        },
+        {
+          "rating": 2,
+          "text": "Packs down nicely but the build quality doesn't match the price point."
+        }
       ]
     },
     "ai_insight": {
@@ -608,7 +1068,7 @@
         "Sell-through is 22 points below plan at week 6, unmoved by an existing 20% markdown",
         "Weeks of supply has grown to 21, the longest runway in the assortment"
       ],
-      "recommendation": "Escalate to the vendor for a quality audit and pause further markdown spend until the defect rate is confirmed — discounting a defective unit only accelerates returns and review damage."
+      "recommendation": "Escalate to the vendor for a quality audit and pause further markdown spend until the defect rate is confirmed \u2014 discounting a defective unit only accelerates returns and review damage."
     }
   },
   {
@@ -616,19 +1076,41 @@
     "name": "Verve High-Support Bra",
     "category": "Sports Bras",
     "colorway": "Plum",
-    "image_url": "https://picsum.photos/seed/ml-013/300/300",
+    "image_url": "https://images.unsplash.com/photo-1769196716871-39a0712fb037?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 57,
     "sell_through_target_pct": 53,
-    "sell_through_trend": [10, 21, 31, 41, 49, 57],
+    "sell_through_trend": [
+      10,
+      21,
+      31,
+      41,
+      49,
+      57
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 8,
     "size_curve": {
-      "XS": { "purchased": 110, "sold": 68 },
-      "S": { "purchased": 170, "sold": 104 },
-      "M": { "purchased": 190, "sold": 118 },
-      "L": { "purchased": 170, "sold": 101 },
-      "XL": { "purchased": 120, "sold": 68 }
+      "XS": {
+        "purchased": 110,
+        "sold": 68
+      },
+      "S": {
+        "purchased": 170,
+        "sold": 104
+      },
+      "M": {
+        "purchased": 190,
+        "sold": 118
+      },
+      "L": {
+        "purchased": 170,
+        "sold": 101
+      },
+      "XL": {
+        "purchased": 120,
+        "sold": 68
+      }
     },
     "return_rate_pct": 5.9,
     "return_reasons": {
@@ -642,12 +1124,28 @@
     "reviews": {
       "avg_rating": 4.4,
       "count": 71,
-      "positive_themes": ["Excellent high-impact support", "True to size", "Doesn't chafe"],
-      "negative_themes": ["Takes effort to get on/off", "Wish there were more strap adjustments"],
+      "positive_themes": [
+        "Excellent high-impact support",
+        "True to size",
+        "Doesn't chafe"
+      ],
+      "negative_themes": [
+        "Takes effort to get on/off",
+        "Wish there were more strap adjustments"
+      ],
       "excerpts": [
-        { "rating": 5, "text": "Finally a high-support bra that doesn't cause chafing on long runs." },
-        { "rating": 5, "text": "True to size and holds up great through HIIT circuits." },
-        { "rating": 4, "text": "Great support, just takes a minute to wrestle into after a workout." }
+        {
+          "rating": 5,
+          "text": "Finally a high-support bra that doesn't cause chafing on long runs."
+        },
+        {
+          "rating": 5,
+          "text": "True to size and holds up great through HIIT circuits."
+        },
+        {
+          "rating": 4,
+          "text": "Great support, just takes a minute to wrestle into after a workout."
+        }
       ]
     },
     "ai_insight": {
@@ -659,7 +1157,7 @@
         "Sentiment is 4.4 stars across 71 reviews with support called out as a consistent strength",
         "Weeks of supply at 8 is on pace with season length"
       ],
-      "recommendation": "No action needed. Style is tracking 4 points above plan with strong sentiment — continue standard monitoring."
+      "recommendation": "No action needed. Style is tracking 4 points above plan with strong sentiment \u2014 continue standard monitoring."
     }
   },
   {
@@ -667,19 +1165,41 @@
     "name": "Tempo 7/8 Legging",
     "category": "Leggings",
     "colorway": "Grey Marl",
-    "image_url": "https://picsum.photos/seed/ml-014/300/300",
+    "image_url": "https://images.unsplash.com/photo-1762337384113-31eedcfa2e89?w=300&h=300&fit=crop&crop=bottom&auto=format&q=80",
     "sell_through_pct": 45,
     "sell_through_target_pct": 52,
-    "sell_through_trend": [9, 17, 25, 33, 39, 45],
+    "sell_through_trend": [
+      9,
+      17,
+      25,
+      33,
+      39,
+      45
+    ],
     "markdown_depth_pct": 0,
     "markdown_weeks_ago": 0,
     "weeks_of_supply": 10,
     "size_curve": {
-      "XS": { "purchased": 120, "sold": 61 },
-      "S": { "purchased": 180, "sold": 92 },
-      "M": { "purchased": 200, "sold": 98 },
-      "L": { "purchased": 170, "sold": 78 },
-      "XL": { "purchased": 120, "sold": 51 }
+      "XS": {
+        "purchased": 120,
+        "sold": 61
+      },
+      "S": {
+        "purchased": 180,
+        "sold": 92
+      },
+      "M": {
+        "purchased": 200,
+        "sold": 98
+      },
+      "L": {
+        "purchased": 170,
+        "sold": 78
+      },
+      "XL": {
+        "purchased": 120,
+        "sold": 51
+      }
     },
     "return_rate_pct": 11.7,
     "return_reasons": {
@@ -693,12 +1213,28 @@
     "reviews": {
       "avg_rating": 3.6,
       "count": 49,
-      "positive_themes": ["Comfortable everyday wear", "Nice marl texture", "Good length"],
-      "negative_themes": ["Sheer when stretched", "Fabric feels thin at the knee after wear"],
+      "positive_themes": [
+        "Comfortable everyday wear",
+        "Nice marl texture",
+        "Good length"
+      ],
+      "negative_themes": [
+        "Sheer when stretched",
+        "Fabric feels thin at the knee after wear"
+      ],
       "excerpts": [
-        { "rating": 3, "text": "Comfortable but goes sheer when I squat, wish it were a bit thicker." },
-        { "rating": 4, "text": "Love the marl color and the 7/8 length hits right at the ankle." },
-        { "rating": 2, "text": "Started thinning at the knees after about a month of regular wear." }
+        {
+          "rating": 3,
+          "text": "Comfortable but goes sheer when I squat, wish it were a bit thicker."
+        },
+        {
+          "rating": 4,
+          "text": "Love the marl color and the 7/8 length hits right at the ankle."
+        },
+        {
+          "rating": 2,
+          "text": "Started thinning at the knees after about a month of regular wear."
+        }
       ]
     },
     "ai_insight": {
@@ -718,19 +1254,41 @@
     "name": "Aero Mesh Short",
     "category": "Shorts",
     "colorway": "Cobalt",
-    "image_url": "https://picsum.photos/seed/ml-015/300/300",
+    "image_url": "https://images.unsplash.com/photo-1789110519789-5ed0358833b1?w=300&h=300&fit=crop&auto=format&q=80",
     "sell_through_pct": 31,
     "sell_through_target_pct": 49,
-    "sell_through_trend": [7, 12, 17, 22, 27, 31],
+    "sell_through_trend": [
+      7,
+      12,
+      17,
+      22,
+      27,
+      31
+    ],
     "markdown_depth_pct": 15,
     "markdown_weeks_ago": 2,
     "weeks_of_supply": 16,
     "size_curve": {
-      "XS": { "purchased": 190, "sold": 118 },
-      "S": { "purchased": 210, "sold": 121 },
-      "M": { "purchased": 170, "sold": 58 },
-      "L": { "purchased": 130, "sold": 34 },
-      "XL": { "purchased": 90, "sold": 21 }
+      "XS": {
+        "purchased": 190,
+        "sold": 118
+      },
+      "S": {
+        "purchased": 210,
+        "sold": 121
+      },
+      "M": {
+        "purchased": 170,
+        "sold": 58
+      },
+      "L": {
+        "purchased": 130,
+        "sold": 34
+      },
+      "XL": {
+        "purchased": 90,
+        "sold": 21
+      }
     },
     "return_rate_pct": 17.1,
     "return_reasons": {
@@ -744,12 +1302,28 @@
     "reviews": {
       "avg_rating": 3.2,
       "count": 41,
-      "positive_themes": ["Lightweight mesh panels", "Great for hot runs", "Vibrant cobalt color"],
-      "negative_themes": ["Runs large starting at M", "Waistband too loose above size S"],
+      "positive_themes": [
+        "Lightweight mesh panels",
+        "Great for hot runs",
+        "Vibrant cobalt color"
+      ],
+      "negative_themes": [
+        "Runs large starting at M",
+        "Waistband too loose above size S"
+      ],
       "excerpts": [
-        { "rating": 2, "text": "Ordered my usual M and it's swimming on me, waistband won't stay up." },
-        { "rating": 4, "text": "XS and S fit perfectly and the mesh keeps me cool on summer runs." },
-        { "rating": 2, "text": "Sized up like the description suggested and now it's way too big." }
+        {
+          "rating": 2,
+          "text": "Ordered my usual M and it's swimming on me, waistband won't stay up."
+        },
+        {
+          "rating": 4,
+          "text": "XS and S fit perfectly and the mesh keeps me cool on summer runs."
+        },
+        {
+          "rating": 2,
+          "text": "Sized up like the description suggested and now it's way too big."
+        }
       ]
     },
     "ai_insight": {
@@ -761,7 +1335,7 @@
         "Reviews consistently describe the fit as running large starting at size M",
         "Sell-through is 18 points below plan at week 4 post-markdown"
       ],
-      "recommendation": "Add a sizing callout to the product page for M and above ('runs large, consider sizing down') immediately — this is a grading issue a markdown alone won't solve."
+      "recommendation": "Add a sizing callout to the product page for M and above ('runs large, consider sizing down') immediately \u2014 this is a grading issue a markdown alone won't solve."
     }
   }
 ]
