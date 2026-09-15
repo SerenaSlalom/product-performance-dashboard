@@ -1,4 +1,6 @@
-export const SEASONS = ['Fall 2026', 'Spring 2026']
+export const SEASONS = ['Fall 2026', 'Summer 2026', 'Spring 2026', 'Winter 2025']
+export const ACTIVE_SEASON = 'Fall 2026'
+export const ACTIVE_SEASON_MONTHS = ['Sep', 'Oct', 'Nov']
 export const CATEGORIES = [
   'Training Tops',
   'Sports Bras',
@@ -32,6 +34,17 @@ export function getSizeCurveStatus(sizeCurve) {
 
 export function getTopReturnReason(returnReasons) {
   return Object.entries(returnReasons).sort((a, b) => b[1] - a[1])[0][0]
+}
+
+export function getMonthlySellThrough(product) {
+  const t = product.sell_through_trend
+  return [t[1], t[3], t[5]]
+}
+
+export function getMonthlyReturnRate(product) {
+  const final = product.return_rate_pct
+  const round1 = (n) => Math.round(n * 10) / 10
+  return [round1(final * 0.55), round1(final * 0.8), final]
 }
 
 export function getSentimentTone(avgRating) {

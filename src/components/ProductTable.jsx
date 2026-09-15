@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { PackageSearch } from 'lucide-react'
 import ProductRow from './ProductRow'
-import { CATEGORIES, SEASONS, isAtRisk } from '../utils/dataHelpers'
+import { CATEGORIES, SEASONS, ACTIVE_SEASON, isAtRisk } from '../utils/dataHelpers'
 
 const COLUMNS = [
   'Style',
@@ -43,7 +43,7 @@ export default function ProductTable({
   onToggleReviewed,
 }) {
   const filteredAndSorted = useMemo(() => {
-    let result = season === 'Fall 2026' ? [...products] : []
+    let result = season === ACTIVE_SEASON ? [...products] : []
 
     if (selectedCategories.size > 0) {
       result = result.filter((p) => selectedCategories.has(p.category))
@@ -164,7 +164,7 @@ export default function ProductTable({
           <PackageSearch size={28} strokeWidth={1.5} className="text-border" />
           <p className="text-[14px] font-medium text-ink">No styles match these filters</p>
           <p className="max-w-sm text-[13px] text-muted">
-            {season !== 'Fall 2026'
+            {season !== ACTIVE_SEASON
               ? `No assortment data is loaded for ${season} yet.`
               : 'Try clearing a category filter or switching back to All Styles.'}
           </p>
