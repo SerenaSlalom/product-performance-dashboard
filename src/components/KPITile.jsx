@@ -1,6 +1,4 @@
-import MiniTrendBars from './MiniTrendBars'
-
-export default function KPITile({ label, value, sublabel, onClick, accent = false, icon: Icon, trend }) {
+export default function KPITile({ label, value, sublabel, onClick, accent = false, icon: Icon }) {
   const Wrapper = onClick ? 'button' : 'div'
 
   return (
@@ -25,11 +23,6 @@ export default function KPITile({ label, value, sublabel, onClick, accent = fals
       <p className="font-display mt-3 text-[34px] font-bold leading-none tracking-tight">{value}</p>
       {sublabel && (
         <p className={`mt-2 text-[13px] ${accent ? 'text-white/70' : 'text-muted'}`}>{sublabel}</p>
-      )}
-      {trend && (
-        <div className={`mt-4 border-t pt-4 ${accent ? 'border-white/10' : 'border-border'}`}>
-          <MiniTrendBars {...trend} size="md" dark={accent} />
-        </div>
       )}
     </Wrapper>
   )

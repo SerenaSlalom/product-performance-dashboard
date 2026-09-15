@@ -2,9 +2,17 @@ import { useMemo, useState } from 'react'
 import { TrendingUp, AlertTriangle, RotateCcw, Star } from 'lucide-react'
 import TopBar from './components/TopBar'
 import KPITile from './components/KPITile'
+import TrendKPICard from './components/TrendKPICard'
 import ProductTable from './components/ProductTable'
 import assortment from './data/assortment.json'
-import { computeKPIs, computeMonthlyAverages, formatPct, ACTIVE_SEASON, ACTIVE_SEASON_MONTHS } from './utils/dataHelpers'
+import {
+  computeKPIs,
+  computeMonthlyAverages,
+  formatPct,
+  ACTIVE_SEASON,
+  ACTIVE_SEASON_MONTHS,
+  SEASONS,
+} from './utils/dataHelpers'
 
 export default function App() {
   const [season, setSeason] = useState(ACTIVE_SEASON)
@@ -56,22 +64,45 @@ export default function App() {
           <p className="font-display text-[28px] font-bold leading-tight text-ink md:text-[32px]">
             Product Inventory Dashboard
           </p>
+          <div className="mt-3 flex items-center gap-2">
+            <label htmlFor="season-filter" className="text-[13px] font-medium text-muted">
+              Season
+            </label>
+            <select
+              id="season-filter"
+              value={season}
+              onChange={(e) => setSeason(e.target.value)}
+              className="rounded-full border border-border bg-white px-4 py-2 text-[13px] font-medium text-ink outline-none focus:border-accent-deep"
+            >
+              {SEASONS.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </div>
         </header>
 
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <KPITile
+          <TrendKPICard
             label="Average Sell-Through Rate"
-            value={formatPct(kpis.avgSellThrough, 0)}
-            sublabel="Across all active styles"
             icon={TrendingUp}
             accent
-            trend={{
-              values: monthlyAverages.sellThrough,
-              labels: ACTIVE_SEASON_MONTHS,
-              target: monthlyAverages.sellThroughTarget,
-              color: 'var(--color-accent)',
-              formatValue: (v) => formatPct(v, 0),
-            }}
+            values={monthlyAverages.sellThrough}
+            labels={ACTIVE_SEASON_MONTHS}
+            target={monthlyAverages.sellThroughTarget}
+            color="var(--color-accent)"
+            formatValue={(v) => formatPct(v, 0)}
+            sublabel="Across all active styles"
+          />
+          <TrendKPICard
+            label="Average Return Rate"
+            icon={RotateCcw}
+            values={monthlyAverages.returnRate}
+            labels={ACTIVE_SEASON_MONTHS}
+            color="var(--color-danger)"
+            formatValue={(v) => formatPct(v, 1)}
+            sublabel="Returns as % of units sold"
           />
           <KPITile
             label="Styles At Risk"
@@ -79,18 +110,6 @@ export default function App() {
             sublabel="More than 10 pts below plan"
             icon={AlertTriangle}
             onClick={handleAtRiskTileClick}
-          />
-          <KPITile
-            label="Average Return Rate"
-            value={formatPct(kpis.avgReturnRate, 1)}
-            sublabel="Returns as % of units sold"
-            icon={RotateCcw}
-            trend={{
-              values: monthlyAverages.returnRate,
-              labels: ACTIVE_SEASON_MONTHS,
-              color: 'var(--color-danger)',
-              formatValue: (v) => formatPct(v, 1),
-            }}
           />
           <KPITile
             label="Average Sentiment Score"
@@ -105,7 +124,6 @@ export default function App() {
           <ProductTable
             products={assortment}
             season={season}
-            onSeasonChange={setSeason}
             selectedCategories={selectedCategories}
             onToggleCategory={handleToggleCategory}
             statusFilter={statusFilter}

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { PackageSearch } from 'lucide-react'
 import ProductRow from './ProductRow'
-import { CATEGORIES, SEASONS, ACTIVE_SEASON, isAtRisk } from '../utils/dataHelpers'
+import { CATEGORIES, ACTIVE_SEASON, isAtRisk } from '../utils/dataHelpers'
 
 const COLUMNS = [
   'Style',
@@ -30,7 +30,6 @@ const SORT_OPTIONS = [
 export default function ProductTable({
   products,
   season,
-  onSeasonChange,
   selectedCategories,
   onToggleCategory,
   statusFilter,
@@ -82,18 +81,6 @@ export default function ProductTable({
     <div className="rounded-2xl bg-white shadow-[0_2px_8px_rgba(3,7,18,0.06)]">
       <div className="flex flex-col gap-4 border-b border-border p-5 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-wrap items-center gap-2">
-          <select
-            value={season}
-            onChange={(e) => onSeasonChange(e.target.value)}
-            className="rounded-full border border-border bg-white px-4 py-2 text-[13px] font-medium text-ink outline-none focus:border-accent-deep"
-          >
-            {SEASONS.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-
           <div className="flex flex-wrap items-center gap-1.5">
             <button
               type="button"
