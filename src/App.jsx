@@ -4,6 +4,7 @@ import TopBar from './components/TopBar'
 import KPITile from './components/KPITile'
 import TrendKPICard from './components/TrendKPICard'
 import ProductTable from './components/ProductTable'
+import SeasonMultiSelect from './components/SeasonMultiSelect'
 import assortment from './data/assortment.json'
 import {
   computeKPIs,
@@ -15,7 +16,7 @@ import {
 } from './utils/dataHelpers'
 
 export default function App() {
-  const [season, setSeason] = useState(ACTIVE_SEASON)
+  const [selectedSeasons, setSelectedSeasons] = useState(new Set([ACTIVE_SEASON]))
   const [selectedCategories, setSelectedCategories] = useState(new Set())
   const [statusFilter, setStatusFilter] = useState('all')
   const [sortBy, setSortBy] = useState('default')
@@ -53,7 +54,7 @@ export default function App() {
 
   function handleAtRiskTileClick() {
     setStatusFilter('at-risk')
-    setSeason(ACTIVE_SEASON)
+    setSelectedSeasons(new Set([ACTIVE_SEASON]))
   }
 
   return (
@@ -65,21 +66,14 @@ export default function App() {
             Product Inventory Dashboard
           </p>
           <div className="mt-3 flex items-center gap-2">
-            <label htmlFor="season-filter" className="text-[13px] font-medium text-muted">
+            <label className="text-[13px] font-medium text-muted">
               Season
             </label>
-            <select
-              id="season-filter"
-              value={season}
-              onChange={(e) => setSeason(e.target.value)}
-              className="rounded-full border border-border bg-white px-4 py-2 text-[13px] font-medium text-ink outline-none focus:border-accent-deep"
-            >
-              {SEASONS.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
+            <SeasonMultiSelect
+              seasons={SEASONS}
+              selectedSeasons={selectedSeasons}
+              onSeasonChange={setSelectedSeasons}
+            />
           </div>
         </header>
 
@@ -123,7 +117,7 @@ export default function App() {
           <h2 className="mb-3 font-display text-[18px] font-semibold text-ink">Product Details</h2>
           <ProductTable
             products={assortment}
-            season={season}
+            selectedSeasons={selectedSeasons}
             selectedCategories={selectedCategories}
             onToggleCategory={handleToggleCategory}
             statusFilter={statusFilter}

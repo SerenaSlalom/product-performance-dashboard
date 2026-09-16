@@ -29,7 +29,7 @@ const SORT_OPTIONS = [
 
 export default function ProductTable({
   products,
-  season,
+  selectedSeasons,
   selectedCategories,
   onToggleCategory,
   statusFilter,
@@ -42,7 +42,7 @@ export default function ProductTable({
   onToggleReviewed,
 }) {
   const filteredAndSorted = useMemo(() => {
-    let result = season === ACTIVE_SEASON ? [...products] : []
+    let result = selectedSeasons.has(ACTIVE_SEASON) ? [...products] : []
 
     if (selectedCategories.size > 0) {
       result = result.filter((p) => selectedCategories.has(p.category))
@@ -75,7 +75,7 @@ export default function ProductTable({
     }
 
     return result
-  }, [products, season, selectedCategories, statusFilter, sortBy])
+  }, [products, selectedSeasons, selectedCategories, statusFilter, sortBy])
 
   return (
     <div className="rounded-2xl bg-white shadow-[0_2px_8px_rgba(3,7,18,0.06)]">
@@ -151,8 +151,8 @@ export default function ProductTable({
           <PackageSearch size={28} strokeWidth={1.5} className="text-border" />
           <p className="text-[14px] font-medium text-ink">No styles match these filters</p>
           <p className="max-w-sm text-[13px] text-muted">
-            {season !== ACTIVE_SEASON
-              ? `No assortment data is loaded for ${season} yet.`
+            {!selectedSeasons.has(ACTIVE_SEASON)
+              ? 'No assortment data is loaded for the selected seasons yet.'
               : 'Try clearing a category filter or switching back to All Styles.'}
           </p>
         </div>
