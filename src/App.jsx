@@ -1,60 +1,33 @@
-import { useMemo, useState } from 'react'
-import { TrendingUp, AlertTriangle, RotateCcw, Star } from 'lucide-react'
+import { useMemo, useRef, useState } from 'react'
+import { ArrowUpRight, ArrowDownRight } from 'lucide-react'
 import TopBar from './components/TopBar'
-import KPITile from './components/KPITile'
-import TrendKPICard from './components/TrendKPICard'
-import ProductTable from './components/ProductTable'
+import InsightKPICard from './components/InsightKPICard'
 import SeasonMultiSelect from './components/SeasonMultiSelect'
+import CategoryTrendChart from './components/CategoryTrendChart'
+import SizePerformanceTrend from './components/SizePerformanceTrend'
+import SizeTrendDrivers from './components/SizeTrendDrivers'
+import ReturnDriversChart from './components/ReturnDriversChart'
+import CostImpactCard from './components/CostImpactCard'
+import CustomerVoiceInsights from './components/CustomerVoiceInsights'
+import RecommendedActions from './components/RecommendedActions'
+import InventoryHealthTable from './components/InventoryHealthTable'
 import assortment from './data/assortment.json'
-import {
-  computeKPIs,
-  computeMonthlyAverages,
-  formatPct,
-  ACTIVE_SEASON,
-  ACTIVE_SEASON_MONTHS,
-  SEASONS,
-} from './utils/dataHelpers'
+import { computeKPIs, computeMonthlyAverages, formatPct, ACTIVE_SEASON, SEASONS } from './utils/dataHelpers'
 
 export default function App() {
   const [selectedSeasons, setSelectedSeasons] = useState(new Set([ACTIVE_SEASON]))
-  const [selectedCategories, setSelectedCategories] = useState(new Set())
-  const [statusFilter, setStatusFilter] = useState('all')
-  const [sortBy, setSortBy] = useState('default')
-  const [expandedId, setExpandedId] = useState(null)
-  const [reviewedIds, setReviewedIds] = useState(new Set())
+  const customerVoiceRef = useRef(null)
+  const recommendedActionsRef = useRef(null)
 
   const kpis = useMemo(() => computeKPIs(assortment), [])
   const monthlyAverages = useMemo(() => computeMonthlyAverages(assortment), [])
 
-  function handleToggleCategory(category) {
-    if (category === null) {
-      setSelectedCategories(new Set())
-      return
-    }
-    setSelectedCategories((prev) => {
-      const next = new Set(prev)
-      if (next.has(category)) next.delete(category)
-      else next.add(category)
-      return next
-    })
-  }
-
-  function handleToggleExpand(id) {
-    setExpandedId((prev) => (prev === id ? null : id))
-  }
-
-  function handleToggleReviewed(id) {
-    setReviewedIds((prev) => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
-      return next
-    })
-  }
-
   function handleAtRiskTileClick() {
-    setStatusFilter('at-risk')
-    setSelectedSeasons(new Set([ACTIVE_SEASON]))
+    recommendedActionsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  function handleViewCustomerFeedback() {
+    customerVoiceRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
@@ -78,57 +51,76 @@ export default function App() {
         </header>
 
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <TrendKPICard
-            label="Average Sell-Through Rate"
-            icon={TrendingUp}
-            accent
-            values={monthlyAverages.sellThrough}
-            labels={ACTIVE_SEASON_MONTHS}
-            target={monthlyAverages.sellThroughTarget}
-            color="var(--color-accent)"
-            formatValue={(v) => formatPct(v, 0)}
-            sublabel="Across all active styles"
+          <InsightKPICard
+            label="Sell-Through Rate"
+            value={formatPct(kpis.avgSellThrough, 0)}
+            tone="success"
+            trend={monthlyAverages.sellThrough}
+            deltaIcon={ArrowUpRight}
+            deltaText="+8% MoM"
+            insight="Growth driven by Leggings and Sports Bras. M/L sizes represent 67% of total gains."
+            footerText="+$2.4M revenue contribution"
           />
-          <TrendKPICard
-            label="Average Return Rate"
-            icon={RotateCcw}
-            values={monthlyAverages.returnRate}
-            labels={ACTIVE_SEASON_MONTHS}
-            color="var(--color-danger)"
-            formatValue={(v) => formatPct(v, 1)}
-            sublabel="Returns as % of units sold"
+          <InsightKPICard
+            label="Return Rate"
+            value={formatPct(monthlyAverages.returnRate[monthlyAverages.returnRate.length - 1], 0)}
+            badge="Alert"
+            tone="danger"
+            trend={monthlyAverages.returnRate}
+            deltaIcon={ArrowUpRight}
+            deltaText="+2.4 pts"
+            insight="73% of return increase relates to sizing. XL and XXL have highest return frequency."
+            footerText="$420K additional return costs"
           />
-          <KPITile
-            label="Styles At Risk"
-            value={kpis.atRiskCount}
-            sublabel="More than 10 pts below plan"
-            icon={AlertTriangle}
-            onClick={handleAtRiskTileClick}
-          />
-          <KPITile
-            label="Average Sentiment Score"
+          <InsightKPICard
+            label="Customer Sentiment"
             value={kpis.avgSentiment.toFixed(1)}
-            sublabel="Mean customer rating (1–5)"
-            icon={Star}
+            valueSuffix="/5"
+            tone="danger"
+            trend={[4.1, 3.9, kpis.avgSentiment]}
+            deltaIcon={ArrowDownRight}
+            deltaText="-0.3 pts"
+            insight="Negative reviews increased around fit consistency and fabric durability."
+            footerText="View Customer Feedback"
+            onFooterClick={handleViewCustomerFeedback}
+          />
+          <InsightKPICard
+            label="At-Risk Styles"
+            value={kpis.atRiskCount}
+            tone="danger"
+            trend={[3, 4, kpis.atRiskCount]}
+            deltaIcon={ArrowUpRight}
+            deltaText="+2 this month"
+            insight="4 at-risk styles show low sell-through and declining sentiment simultaneously."
+            footerText="$320K potential write-off risk"
+            onClick={handleAtRiskTileClick}
           />
         </div>
 
-        <div className="mt-8">
-          <h2 className="mb-3 font-display text-[18px] font-semibold text-ink">Product Details</h2>
-          <ProductTable
-            products={assortment}
-            selectedSeasons={selectedSeasons}
-            selectedCategories={selectedCategories}
-            onToggleCategory={handleToggleCategory}
-            statusFilter={statusFilter}
-            onStatusFilterChange={setStatusFilter}
-            sortBy={sortBy}
-            onSortByChange={setSortBy}
-            expandedId={expandedId}
-            onToggleExpand={handleToggleExpand}
-            reviewedIds={reviewedIds}
-            onToggleReviewed={handleToggleReviewed}
-          />
+        <div className="mt-6">
+          <CategoryTrendChart selectedSeasons={selectedSeasons} />
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <SizePerformanceTrend />
+          <SizeTrendDrivers />
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <ReturnDriversChart />
+          <CostImpactCard />
+        </div>
+
+        <div ref={customerVoiceRef} className="mt-6 scroll-mt-6">
+          <CustomerVoiceInsights />
+        </div>
+
+        <div ref={recommendedActionsRef} className="mt-6 scroll-mt-6">
+          <RecommendedActions />
+        </div>
+
+        <div className="mt-6">
+          <InventoryHealthTable products={assortment} />
         </div>
       </div>
     </div>
