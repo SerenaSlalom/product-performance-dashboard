@@ -1,103 +1,134 @@
 # Component Notes
 
-Decisions made while building components that the brief left open.
+Decisions made while building components that the brief left open. See
+`project-context.md` for why the component list below replaced an earlier
+row-click/detail-panel architecture.
 
-## `KPITile`
-- The "Average Sell-Through Rate" tile uses the ink/accent (`accent`) variant
-  to lead the eye, per the design system's rule of one elevated moment per
-  region. The other three tiles stay on plain white surfaces.
-- "Styles At Risk" is the only clickable tile (brief nice-to-have): it sets
-  `statusFilter` to `at-risk` and jumps the season back to Fall 2026 so the
-  filter always has data to show.
+## `TopBar`
+- Horizontal top bar (brand wordmark left, user identity right) — no sidebar
+  nav, per stakeholder feedback on the original build. No nav links were
+  added back in; the feedback asked for the sidebar gone, not relocated.
+- The brand mark is a static SVG (`public/maeven-logo.svg`), colored to the
+  design system's ink token instead of pure black.
 
-## `ProductTable` / `ProductRow`
-- Sort and category/status filters are independent and composable (e.g.
-  "Sports Bras" + "At-Risk Only" + "Return Rate desc" all apply together).
-- Row hover uses a lighter tint (`surface-inset/60`) than the expanded-row
-  background (`surface-inset` at full opacity) so an open row stays visually
-  distinct from a hovered one.
-- A small red dot next to Sell-Through marks at-risk styles inline, so the
-  signal is visible even when the table isn't filtered to At-Risk Only.
+## `SeasonMultiSelect`
+- Custom dropdown (not a native `<select multiple>`) with checkboxes,
+  "Select all," and "Clear," matching a provided mobile reference design.
+  Returns the selected seasons as a `Set`, not an array, since every
+  consumer only needs membership checks (`selectedSeasons.has(season)`).
+- Closes on outside click via a `mousedown` listener on `document`, removed
+  on unmount.
 
-## `AIInsightCard`
-- Left border uses the CSS variable `--color-accent` directly (not a Tailwind
-  utility) since Tailwind v4 doesn't generate a `border-l-accent` shorthand
-  for arbitrary widths — kept as inline style to avoid a one-off utility class.
-- "Recommended action" sits in an ink-filled sub-card, not the lime card
-  background, per the design system's rule that lime should highlight status/
-  CTAs, not surround body copy.
+## `InsightKPICard`
+- One shared component for all four header cards rather than four bespoke
+  ones — label, value, sparkline, delta, an AI-style insight callout, and a
+  footer that's either a static stat (`footerText`) or a click-through
+  action (`footerText` + `onFooterClick`). The whole card can also be a
+  button (`onClick`) — used for the At-Risk card, not the Sentiment card,
+  since a card can't be both a `<button>` and contain a nested `<button>`
+  footer link.
+- Sparkline is a small hand-built inline SVG, not a Recharts mini-chart —
+  at ~96×36px, a full chart container's tooltip/axis machinery is unneeded
+  overhead for a decorative trend indicator.
+- `tone` (`success`/`danger`) drives the sparkline color, delta text color,
+  and static footer text color together, so a card never mixes a green
+  sparkline with red delta text.
+- The Return Rate card's `badge="Alert"` prop is also what triggers the
+  tinted red card background/border — badge presence, not a separate flag,
+  since in practice the two always travel together.
 
-## `SizeCurveChart`
-- "Sold out" is a computed threshold (units sold ÷ purchased ≥ 90%), not a
-  literal `sold_out` boolean in the data — the JSON only stores raw counts.
+## `CategoryTrendChart`
+- Reuses the app's actual `SEASONS` list (not an invented separate season
+  set) so it stays in sync with the header's season filter — see
+  `project-context.md` for how season selection maps to chart data.
+- When exactly one season is selected, x-axis switches from season labels
+  to that season's three months (`SEASON_MONTHS`), with values interpolated
+  toward the season's stored end-of-season number via a fixed per-metric
+  ramp (`getCategorySeasonMonthlyTrend`) — mirrors the same "ramp toward a
+  known final value" approach used for the old sell-through/return-rate KPI
+  trends, rather than inventing an unrelated interpolation scheme.
+- `margin.left` on the Recharts `LineChart` must stay non-negative — an
+  earlier `-20px` value (copied from a different chart) clipped the leading
+  digit off Y-axis tick labels, leaving only the `%` visible. Fixed to a
+  small positive margin plus a wider Y-axis reserved width.
+- `interval={0}` + `padding` on the XAxis are both required to show every
+  season/month label without Recharts auto-skipping the first/last one.
 
-## `SentimentPanel` / `ReturnBreakdown`
-- Sentiment star color reuses the same red/amber/green thresholds as the
-  table's sentiment color-coding nice-to-have (`getSentimentTone` in
-  `dataHelpers.js`), so the table and the expanded panel never disagree.
-- The return-reason donut uses a muted slate/ink palette with two lime tones
-  reserved for whichever reason ranks highest, echoing the "reserve lime for
-  the current-period highlight" rule for charts.
+## `SizePerformanceTrend` / `SizeTrendDrivers`
+- Single bar-chart component with a Sell-Thru/Returns/Growth toggle, colored
+  per metric (indigo for the neutral "Sell-Thru" default, danger for
+  Returns, success for Growth) rather than one fixed bar color — the color
+  itself tells you whether "more" is good or bad for the selected metric.
+- `SizeTrendDrivers`' confidence-score bars use the app's shared five-color
+  categorical palette (see `project-context.md`) so they read as part of
+  the same system as the category trend chart's lines, not a one-off list.
 
-## `TopBar` / layout (post-launch feedback round)
-- The fixed sidebar nav was removed per stakeholder feedback and replaced
-  with a horizontal top bar: brand wordmark top-left, buyer identity
-  (initials avatar + name + title) top-right. No nav links were added back
-  in — the feedback asked for the sidebar gone, not relocated.
-- The brand mark is a static SVG (`public/maeven-logo.svg`) sized from the
-  supplied `maeven_logo_v3_final.html` asset, colored to the design system's
-  ink token instead of pure black.
+## `ReturnDriversChart` / `CostImpactCard`
+- Return-reason bars use a six-step red→orange→gold→olive→green→cyan
+  gradient built mostly from existing tokens (`danger`, `warning`,
+  `accent-deep`, `success`) plus one new gold (`#EAB308`) added only because
+  six visually-distinct steps needed one more stop than the existing
+  palette had — documented here so it isn't mistaken for an untracked
+  one-off color later.
+- `CostImpactCard`'s two breakdown tiles (Fit+Size / Fabric+Quality) and its
+  "Top action" callout are static illustrative figures, not computed from
+  `assortment.json` — there's no per-product cost-of-return field in the
+  schema. See `project-context.md`'s note on the aggregate data layer.
 
-## `TrendKPICard` (Average Sell-Through Rate / Average Return Rate tiles)
-- Went through three iterations per stakeholder feedback: (1) a monthly bar
-  chart in each table row, (2) the chart moved up to the KPI tiles as a
-  secondary element below a large headline number, (3) current state — the
-  chart *is* the tile, and the current value is a label floating directly
-  above the current-month bar rather than a separate headline number.
-  `KPITile` reverted to its original simple label/value/sublabel form for the
-  two tiles that don't have a trend (Styles At Risk, Average Sentiment
-  Score); the trend tiles use the dedicated `TrendKPICard` component instead.
-- The two trend tiles were reordered to sit next to each other (first two
-  slots in the KPI grid) per feedback, so they read as a pair on both the
-  4-column desktop grid and the 2-column tablet grid.
-- Neither Sell-Through nor Return Rate has real monthly data in
-  `assortment.json`, so the trend is derived per product, then averaged
-  across all products (`computeMonthlyAverages` in `dataHelpers.js`):
-  - **Sell-Through**: reuses the existing 6-week `sell_through_trend` array
-    per product, sampling weeks 2/4/6 as three month-end snapshots
-    (`getMonthlySellThrough`). Week 6 always equals that product's
-    `sell_through_pct`, so the averaged current-month bar's floating value
-    label always matches what the old headline number would have shown.
-  - **Return Rate**: has no trend array at all, only a final `return_rate_pct`.
-    `getMonthlyReturnRate` synthesizes a plausible per-product ramp (55% → 80%
-    → 100% of the final value) rather than inventing new JSON fields.
-  - Month labels are hardcoded to `ACTIVE_SEASON_MONTHS` (Sep/Oct/Nov) since
-    the dashboard has only one season of data.
-  - The sell-through card keeps a dashed target line (average
-    `sell_through_target_pct`); return rate has no equivalent target in the
-    brief, so it's omitted there.
-- The floating current-value label is absolutely positioned relative to its
-  own bar column using `bottom: barHeight + gap`, not a fixed offset — it
-  stays pinned just above whichever bar is tallest even as the underlying
-  data changes.
+## `CustomerVoiceInsights`
+- Three tabs (Positive/Neutral/Negative) are backed by real product names
+  from `assortment.json` where the underlying review data plausibly
+  supports it (e.g. Momentum Training Tank's "runs small" negative theme
+  matches its actual stored `reviews.negative_themes`), invented reasonably
+  for the rest — not pulled from a literal aggregation of `return_reasons`/
+  `positive_themes` across all 15 products, since those fields use a
+  different taxonomy per product and don't roll up cleanly into four
+  named themes per tab.
+- The header's "View full breakdown" button and the At-Risk KPI card's and
+  Sentiment KPI card's scroll-to actions target this section and
+  `RecommendedActions` by ref (`App.jsx`), not by route — everything stays
+  a single page.
 
-## Season filter placement
-- Originally lived inside the product table's own filter bar; feedback moved
-  it to a standalone control directly under the "Product Inventory Dashboard"
-  title, since it reads as a page-level filter rather than a table-only one.
-  `ProductTable` still receives `season` as a prop (for its filter/empty-state
-  logic) but no longer renders the `<select>` itself.
-- The filter spans 4 options across the trailing year (`Winter 2025` →
-  `Fall 2026`) per earlier feedback to "filter by season over the past year."
-  Only `Fall 2026` (`ACTIVE_SEASON`) has real rows; the other three
-  intentionally fall through to the existing empty state rather than
-  fabricating a second season's worth of products. The KPI tiles are not
-  season-filtered — they always summarize the full loaded dataset.
+## `RecommendedActions`
+- Rank badge colors reuse the same five-color categorical palette as the
+  category trend chart and size-driver bars, in rank order — rank 1 isn't
+  necessarily "the worst," just the first color in the shared sequence.
+- Priority pill only has High/Medium in the current data (no Low action
+  would be worth surfacing here); styled as a red/amber-tinted pill
+  matching the risk-tier badge style used in `InventoryHealthTable`, so the
+  same visual language means "needs attention" everywhere on the page.
+
+## `InventoryHealthTable`
+- Replaced the old row-click/expand `ProductTable` + `ProductRow` +
+  `ProductDetailPanel` chain entirely — one flat table, sorted by risk
+  instead of expandable, since the portfolio-level sections above it now
+  carry the "why" that used to live in the per-row detail panel.
+- Sorted by `getRiskScore` descending by default (matches the "Risk Score ↓"
+  affordance in the reference design) — not by category or name, so the
+  styles that most need attention are always the first thing the user sees
+  in the table, independent of the text filter.
+- `getRiskTier` maps directly from each product's existing
+  `ai_insight.status` rather than re-deriving a tier from raw thresholds —
+  keeps this table's risk badge and the rest of the app's `action_needed`/
+  `watch`/`on_track` language (KPI cards, category insights) from ever
+  disagreeing about the same product.
+- Units Sold / Revenue / one-line AI Recommendation per row come from a
+  small `INVENTORY_METRICS` lookup in `dataHelpers.js`, keyed by product id
+  — not in the JSON schema (see `project-context.md`). Recommendations were
+  written per-product from each product's actual `ai_insight.summary`
+  rather than generated from a generic template, so "Priority redesign —
+  armhole/shoulder fit" (Momentum Training Tank) reflects that product's
+  real stated issue rather than a generic "reduce returns" placeholder.
+- Table needs `overflow-x-auto` + a `min-w` below ~980px; on narrow screens
+  it scrolls horizontally rather than reflowing into cards — flagged as an
+  open "go further" item in `BRIEF.md` rather than solved here.
 
 ## Data (`src/data/assortment.json`)
 - 15 products (exceeds the 12–16 minimum), split 5/5/5 across
   `action_needed` / `watch` / `on_track` for a balanced demo.
 - Each product's return reasons, review themes, and AI insight were written
-  together so they tell one consistent story — e.g. a style with a high "Fit"
-  return share also has "runs small" in its negative themes and a sizing
-  callout in its AI insight signals.
+  together so they tell one consistent story — e.g. a style with a high
+  "Fit" return share also has "runs small" in its negative themes and a
+  sizing callout in its AI insight signals. This consistency is what makes
+  it safe for `InventoryHealthTable` and `CustomerVoiceInsights` to quote
+  specific products by name without contradicting the underlying data.

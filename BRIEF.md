@@ -1,14 +1,38 @@
-# BRIEF.md — Assortment Intelligence Dashboard
+# BRIEF.md — Product Inventory Dashboard
+
 **Project:** P301 Case Study — Operational Dashboard
 **Fictional Company:** Maeven Label *(a mid-size women's sports apparel brand)*
 **Author:** Serena Engquist
-**Last Updated:** 2026-09-15
+**Last Updated:** 2026-09-17 (revision 2 — see note below)
+
+> **Revision note:** The original brief (2026-09-15) specified a row-level tool:
+> a product table where clicking a style expanded a 3-column detail panel
+> (performance charts, customer voice, one AI insight card per SKU). Early
+> review of that build showed the more valuable view for a category manager
+> is portfolio-level, not SKU-level — "where is the assortment as a whole
+> trending, and what are the two or three things I should act on this week,"
+> answered before ever opening a single product. The brief below reflects
+> that pivot. The per-SKU detail (sell-through trend, size curve, return
+> reasons, review themes) still exists, just rolled up into category- and
+> size-level breakdowns and a single risk-sorted table, rather than gated
+> behind a per-row click.
 
 ---
 
 ## Summary
 
-Maeven Label's buying and merchandising team manages 80–120 active styles per season across performance categories like training, running, and studio. Performance data — sell-through, returns, customer reviews — lives across three separate systems. By the time anyone surfaces a problem, they're already mid-markdown. This dashboard gives a category manager or buyer a single view of how their assortment is performing right now, with AI-generated insights and recommended actions for each product.
+Maeven Label's buying and merchandising team manages 15 active styles per
+season across performance categories like training tops, sports bras,
+leggings, shorts, and outerwear. Performance data — sell-through, returns,
+customer reviews — lives across three separate systems. By the time anyone
+surfaces a problem, they're already mid-markdown.
+
+This dashboard gives a category manager one page that answers, in order:
+*How is the assortment doing right now? Which sizes and categories are
+driving that? Why are returns happening, and what would fixing the top
+driver be worth? What is customer sentiment actually saying? What should I
+do about all of this, ranked by impact?* — then backs every answer with a
+full per-style table for anyone who wants to check the underlying data.
 
 This is a mid-season management tool, not an end-of-season autopsy.
 
@@ -16,16 +40,16 @@ This is a mid-season management tool, not an end-of-season autopsy.
 
 ## Target User
 
-**Primary user:** Category manager or buyer at Maeven Label
+**Primary user:** Category manager at Maeven Label
 **Context:** Sits at a desk, checks this daily or a few times per week during an active season
 **What they care about:**
-- Which styles are trending toward a markdown problem before it's too late to act
+- Which styles and sizes are trending toward a markdown problem before it's too late to act
 - Whether customer sentiment is tracking with sell-through (or telling a different story)
 - Why things are being returned — and whether it's a product issue or a sizing/expectation issue
-- What they should actually do about any of it
+- What they should actually do about any of it, and in what order
 
 **What they do NOT need:**
-- Raw data tables they have to interpret themselves
+- Raw data tables they have to interpret themselves, as the *first* thing they see
 - Graphs without context or action hooks
 - Information that arrives after the window to act has closed
 
@@ -33,76 +57,69 @@ This is a mid-season management tool, not an end-of-season autopsy.
 
 ## Key Features
 
-### 1. Assortment Overview (Header KPIs)
-Four summary tiles at the top of the page, across the active season:
+The page reads top to bottom as a briefing: headline health, what's driving
+it, then what to do about it, with the full underlying data available at the
+bottom for anyone who wants to verify a claim.
 
-| Metric | Description |
-|---|---|
-| Average Sell-Through Rate | % of units sold vs. units purchased, across all active styles |
-| Styles At Risk | Count of styles below sell-through target by more than 10 points |
-| Average Return Rate | Returns as a % of units sold, across all active styles |
-| Average Sentiment Score | Mean customer rating (1–5) across all reviewed styles |
+### 1. Season filter
+A multi-select dropdown (`SeasonMultiSelect`) covering the trailing year
+(Winter 2025 → Fall 2026, with `Fall 2026` selected by default). Selecting
+one season shows that season's three months on every trend chart below it;
+selecting multiple seasons shows one point per season instead. Only Fall
+2026 has full per-product data loaded — other seasons are supported by the
+category-level trend data described below.
 
-These tiles are always visible. They give the buyer a pulse before they drill into any individual style.
+### 2. Insight KPI cards
+Four cards, each pairing a headline metric with a sparkline, a
+period-over-period delta, a one-line AI-style insight, and a footer that is
+either a static stat or a click-through action:
 
----
+| Card | Metric | Footer behavior |
+|---|---|---|
+| Sell-Through Rate | Average sell-through, live from data | Static revenue-impact stat |
+| Return Rate | Latest month's average return rate | "Alert" badge + tinted red card |
+| Customer Sentiment | Average review rating (/5) | "View Customer Feedback" scrolls to Customer Voice Insights |
+| At-Risk Styles | Count of styles >10 pts below plan (`isAtRisk`) | Clicking the card scrolls to Recommended Product Actions |
 
-### 2. Product Table with Expandable Detail
+### 3. Category Performance Across Seasons
+A multi-line trend chart (`CategoryTrendChart`) plotting Sell-Through,
+Returns, or Revenue Index (toggle) for all five categories, filtered to
+whichever seasons are selected in the header. One season selected shows a
+month-by-month breakdown for that season; multiple seasons shows a
+season-over-season trend line instead.
 
-A sortable, filterable table showing all active styles. Each row displays:
+### 4. Size Performance Trend + Why Are Sizes Trending?
+A bar chart (`SizePerformanceTrend`) of Sell-Thru / Returns / Growth by size
+(XS–XXL), with an AI-style callout below it, paired with a ranked list of
+demand drivers (`SizeTrendDrivers`) — each with a confidence score and a
+one-line explanation.
 
-| Column | Description |
-|---|---|
-| Style Name + Image Thumbnail | Name and small product photo |
-| Category | e.g., Training Tops, Sports Bras, Leggings, Shorts, Outerwear |
-| Colorway | Primary color of this SKU |
-| Sell-Through % | Units sold / units purchased (show vs. plan target) |
-| Size Curve Status | Flag if any size is severely over- or under-indexed (e.g., "M/L shortage", "XS excess") |
-| Markdown Depth | Current markdown %, and how many weeks since first markdown |
-| Weeks of Supply | Estimated weeks until sellout at current velocity |
-| Return Rate % | Returns as % of units sold |
-| Top Return Reason | The most common reason selected at return (e.g., "Fit", "Quality", "Color inaccurate") |
-| Sentiment Score | Average star rating from site reviews (show count, e.g., "4.1 ★ (38 reviews)") |
-| AI Insight Badge | A small label indicating insight status: "Action needed", "On track", "Watch" |
+### 5. What's Driving Returns? + Cost Impact
+A horizontal bar chart of return reasons (`ReturnDriversChart`) with an
+AI-style callout naming the highest-leverage fix, paired with a financial
+summary (`CostImpactCard`): annual return cost, potential recoverable
+savings, a cost breakdown by driver, and the single top recommended action.
 
-Clicking a row expands an inline Product Detail Panel (see below). The table does not navigate away from the page.
+### 6. Customer Voice Insights
+Review sentiment (`CustomerVoiceInsights`) as three switchable tabs —
+Positive / Neutral / Negative — each showing the top themes behind that
+tab's reviews: mention volume, period delta, which products drove it, and
+which sizes.
 
-**Filters (persistent at top of table):**
-- Season (dropdown): Fall 2026, Spring 2026, etc.
-- Category (multi-select): All, Training Tops, Sports Bras, Leggings, Shorts, Outerwear, Accessories
-- Status (toggle): All Styles / At-Risk Only
-- Sort by: Sell-Through (asc/desc), Return Rate (asc/desc), Sentiment Score (asc/desc)
+### 7. Recommended Product Actions
+A ranked list of four AI-generated actions (`RecommendedActions`), each with
+a priority badge (High/Medium), a one-line rationale, and a projected
+dollar or return-rate impact.
 
----
-
-### 3. Product Detail Panel (Expanded Row)
-
-When a row is expanded, it reveals a three-column panel:
-
-**Column 1 — Performance Metrics**
-- Sell-through trend line (last 6 weeks vs. plan)
-- Markdown timeline: when markdowns were taken and at what depth
-- Weeks of supply remaining
-- Size availability by size band (a simple bar or dot chart showing in-stock vs. sold-out sizes)
-
-**Column 2 — Customer Voice**
-- Return rate breakdown: a donut or bar showing return reasons by % (Fit, Size, Quality, Color/Image Mismatch, Changed Mind, Other)
-- Review sentiment panel:
-  - Average star rating with count
-  - Top 3 positive themes extracted from reviews (e.g., "Great fabric," "True to size," "Flattering cut")
-  - Top 3 negative themes extracted from reviews (e.g., "Runs small," "Fabric thinner than expected," "Color looks different in person")
-  - 2–3 representative review excerpts (short quotes, with star rating shown)
-
-**Column 3 — AI Insights**
-A distinct card with a slightly elevated visual treatment. Contains:
-
-- **What's happening:** 2–4 sentence plain-language summary of this style's current performance, combining sell-through trajectory, return signals, and customer sentiment into a single narrative. Written as if a knowledgeable colleague is briefing you.
-- **Signals driving this:** A short bulleted list (2–4 bullets) of the specific data points behind the summary (e.g., "Return rate is 2.3× category average," "Reviews mention sizing 67% of the time," "Sell-through is 8 points below plan at week 4")
-- **Recommended action:** One clear, specific recommended next step, written in plain language. This is not a suggestion menu — it is one recommendation. Examples:
-  - "Consider a size-run reorder on M and L before week 6 sell-out."
-  - "Rewrite product description to address fit — customer photos show the style photographs darker than product images."
-  - "Take a 20% markdown now. At current velocity, full-price sell-through target is unachievable."
-  - "No action needed. Style is tracking 4 points above plan with strong sentiment."
+### 8. Inventory Health Table
+A full per-style table (`InventoryHealthTable`) — the underlying data behind
+everything above it. Columns: Product, Category, Units Sold, Sell-Through
+(colored bar), Return %, Sentiment (stars), Revenue, Risk Score (High/
+Medium/Low, sorted descending by default), and a one-line AI recommendation
+per style. Includes a text filter by product name or category. Risk tier is
+derived directly from each product's `ai_insight.status`; risk score is a
+weighted combination of sell-through gap, return rate, and rating, used only
+for sort order.
 
 ---
 
@@ -110,7 +127,9 @@ A distinct card with a slightly elevated visual treatment. Contains:
 
 All data is invented. No real brand, vendor, or customer data is used.
 
-Create a JSON file at `src/data/assortment.json` with an array of 12–16 product objects. Each product should include:
+`src/data/assortment.json` holds 15 product objects (exceeds the 12–16
+brief minimum), split 5/5/5 across `action_needed` / `watch` / `on_track`.
+Each product includes:
 
 ```json
 {
@@ -161,7 +180,18 @@ Create a JSON file at `src/data/assortment.json` with an array of 12–16 produc
 }
 ```
 
-Include a spread of statuses in the mock data: at least 4 "action_needed", 4 "watch", and 4 "on_track" styles. Make the data realistic and internally consistent — if return rate is high and reviews mention fit problems, the AI insight should reflect that.
+**Data layered on top of the per-product schema, in `src/utils/dataHelpers.js`:**
+The category-, size-, and return-driver-level numbers used in sections 3–7
+above (e.g. "Category Performance Across Seasons," "Size Performance
+Trend") are not literal fields on each product — they're aggregate,
+illustrative business metrics (season trends, size-band performance,
+return-reason mix, review theme counts, units sold, revenue) defined
+alongside the per-product data, scaled to stay internally consistent with
+it (e.g. the worst-performing product by risk score also has the lowest
+units-sold/revenue figures). This mirrors how a real category manager's
+dashboard would blend a merchandising system feed (the per-SKU JSON) with a
+separately-computed analytics layer (season/size/return rollups) — it is
+not meant to imply those rollups come from the same raw table.
 
 ---
 
@@ -171,64 +201,72 @@ Include a spread of statuses in the mock data: at least 4 "action_needed", 4 "wa
 
 **System character:** Light, analytical, premium. A cool platinum canvas with crisp white cards, deep near-black typography, and a bold electric chartreuse/lime accent for live data, status indicators, and calls to action. Generous corner rounding. Soft card depth via subtle shadow, not border. Confident display typography for numbers.
 
-### Color Tokens
+### Color Tokens (as implemented, `src/index.css`)
 
 | Role | Value |
 |---|---|
-| Background (canvas) | `#F4F5F7` (cool platinum) |
+| Background (canvas) | `#E6EAEE` |
 | Surface (cards) | `#FFFFFF` |
-| Text primary | `#030712` (deep ink) |
-| Text secondary | `#6B7280` |
-| Accent / CTA | `#BFFF00` (electric chartreuse/lime) |
-| Accent text on lime | `#030712` |
-| Success | `#22C55E` |
+| Surface inset | `#F2F5F8` / `#E8EDF2` |
+| Text primary (ink) | `#0B1015` |
+| Text secondary (muted) | `#6B7785` |
+| Accent / CTA | `#D6FF3D` (electric lime) |
+| Accent deep (bars, links) | `#A8CC22` |
+| Success | `#2BB673` |
 | Warning | `#F59E0B` |
-| Danger | `#EF4444` |
-| Border / divider | `#E5E7EB` |
+| Danger | `#E25555` |
+| Border / divider | `#D6DCE3` / `#E4E8ED` |
+
+Categorical chart color (category trend lines, return-driver bars, action
+badges) uses a fixed five-color palette layered on top of the tokens above —
+indigo `#6D5DFC`, pink `#E0459C`, and reuses `warning`/`success`/`#38BDF8`
+cyan — so every multi-series chart on the page reads as one consistent
+system rather than each chart inventing its own colors.
 
 ### Typography
 
 | Role | Spec |
 |---|---|
 | Dashboard title | Display weight, 28–32px, deep ink |
-| Section header | Semibold, 16–18px |
-| KPI tile value | Bold or black weight, 32–40px, deep ink |
-| KPI tile label | Regular, 12–13px, secondary text |
-| Body / table text | Regular, 14px |
-| AI Insight summary | Regular, 14px, slightly elevated card |
-| Badge / tag labels | Medium, 11–12px, all-caps or small-caps |
+| Section header | Semibold, 16px |
+| KPI tile value | Bold, 30–34px, deep ink |
+| KPI tile label | Semibold, 11–13px, uppercase, secondary text |
+| Body / table text | Regular, 12.5–13.5px |
+| AI-style insight callouts | Regular, 12.5px, on a tinted surface, sparkle icon |
+| Badge / tag labels | Medium, 10.5–12px, uppercase |
 
 ### Component Style
 
-- **Card radius:** 12–16px
-- **Card shadow:** `0 2px 8px rgba(0,0,0,0.06)`, no border
-- **Table rows:** Subtle hover state (`#F9FAFB`), expanded rows use a slightly warmer surface
-- **AI Insight card:** Lime left-border accent (`4px solid #BFFF00`) to visually distinguish from data cards
-- **Badges:**
-  - `action_needed` → red background, white text
-  - `watch` → amber background, dark text
-  - `on_track` → green background, white text
-- **Buttons / interactive elements:** Use lime accent for primary action, dark ink for secondary
-- **Charts:** Use a muted palette (slate blues, grays) for trend lines; reserve lime for current-period highlight or targets
+- **Card radius:** 16px (`rounded-2xl`)
+- **Card shadow:** `0 2px 8px rgba(3,7,18,0.06)`, no border (alert cards get a 1px tinted border)
+- **Table rows:** hairline dividers, no zebra striping
+- **AI-style callouts:** tinted background matching the section's accent color (lime-tinted, amber-tinted, indigo-tinted) with a small sparkle icon, not a left-border treatment
+- **Status/risk badges:**
+  - `action_needed` / High risk → red-tinted pill
+  - `watch` / Medium risk → amber-tinted pill
+  - `on_track` / Low risk → green-tinted pill
+- **Buttons / interactive elements:** lime/ink for primary actions; tone-matched text links (e.g. indigo "View full breakdown") for section-level actions
+- **Charts:** Recharts throughout; muted grid lines, tone-based bar/line colors (success/warning/danger) where the metric has a clear good/bad direction, categorical palette where it doesn't
 
 ### Layout
 
-- Fixed sidebar navigation (collapsed by default on smaller screens)
+- Horizontal top bar (brand wordmark left, user identity right) — no sidebar nav
 - Main content area: max-width 1280px, centered
-- Header KPI tiles: 4-column grid, responsive to 2-column on tablet
-- Product table: full width with horizontal scroll on small screens
-- Expanded panel: 3-column grid inside the row, collapses to stacked on mobile
+- KPI cards: 4-column grid, 2-column on tablet, 1-column on mobile
+- Chart pairs (Size Performance / Why Trending, Return Drivers / Cost Impact): 2-column on desktop, stacked on mobile
+- Inventory Health Table: full width with horizontal scroll below ~980px
 
 ---
 
 ## Tech Stack
 
-- **Framework:** React + Vite
-- **Styling:** Tailwind CSS (utility classes only — no custom config required)
+- **Framework:** React 19 + Vite
+- **Styling:** Tailwind CSS v4 (utility classes; design tokens in `src/index.css` `@theme` block)
 - **Charts:** Recharts
-- **Data:** Local JSON file (`src/data/assortment.json`) — no external API calls
-- **AI Insights:** Populated from the JSON file (pre-written per product); no live LLM calls required
-- **Deployment:** Vercel (add password protection before sharing publicly)
+- **Icons:** lucide-react
+- **Data:** Local JSON file (`src/data/assortment.json`) plus static aggregate constants in `src/utils/dataHelpers.js` — no external API calls
+- **AI Insights:** Pre-written/derived from the data (no live LLM calls required)
+- **Deployment:** Vercel — auto-deploys on push to `main`
 
 ---
 
@@ -236,50 +274,35 @@ Include a spread of statuses in the mock data: at least 4 "action_needed", 4 "wa
 
 ```
 /
-├── BRIEF.md                  ← this file
-├── README.md                 ← project overview and local setup instructions
+├── BRIEF.md                        ← this file
+├── README.md                       ← project overview and local setup instructions
 ├── LICENSE
-├── .claude/                  ← AI scaffolding context
-│   ├── project-context.md    ← high-level project goals and design intent
-│   └── component-notes.md    ← notes on component decisions made during build
+├── .claude/                        ← AI scaffolding context
+│   ├── project-context.md          ← high-level project goals and design intent
+│   └── component-notes.md          ← notes on component decisions made during build
 ├── src/
 │   ├── data/
-│   │   └── assortment.json   ← mock product data
+│   │   └── assortment.json         ← mock per-product data
 │   ├── components/
-│   │   ├── KPITile.jsx
-│   │   ├── ProductTable.jsx
-│   │   ├── ProductRow.jsx
-│   │   ├── ProductDetailPanel.jsx
-│   │   ├── SentimentPanel.jsx
-│   │   ├── ReturnBreakdown.jsx
-│   │   ├── SellThroughChart.jsx
-│   │   ├── SizeCurveChart.jsx
-│   │   └── AIInsightCard.jsx
+│   │   ├── TopBar.jsx
+│   │   ├── SeasonMultiSelect.jsx
+│   │   ├── InsightKPICard.jsx
+│   │   ├── CategoryTrendChart.jsx
+│   │   ├── SizePerformanceTrend.jsx
+│   │   ├── SizeTrendDrivers.jsx
+│   │   ├── ReturnDriversChart.jsx
+│   │   ├── CostImpactCard.jsx
+│   │   ├── CustomerVoiceInsights.jsx
+│   │   ├── RecommendedActions.jsx
+│   │   └── InventoryHealthTable.jsx
+│   ├── utils/
+│   │   └── dataHelpers.js          ← KPI math, risk scoring, category/size/return aggregate data
 │   ├── App.jsx
-│   └── main.jsx
+│   ├── main.jsx
+│   └── index.css                   ← Voltline Analytics design tokens
 ├── package.json
 └── vite.config.js
 ```
-
----
-
-## Build Instructions for AI Assistant
-
-Work through the build in this order. Commit to GitHub after each major step with a descriptive message.
-
-1. **Scaffold the project.** Create a React + Vite project. Install Tailwind CSS and Recharts. Confirm the dev server runs.
-
-2. **Create mock data.** Build `src/data/assortment.json` with 12–16 realistic product objects following the schema above. Ensure a mix of statuses and internally consistent signals across each product's metrics, reviews, return reasons, and AI insight.
-
-3. **Build the header KPI tiles.** Create a `KPITile` component. Wire it to computed values from the data file (average sell-through, count of at-risk styles, average return rate, average sentiment score). Style per the design system.
-
-4. **Build the product table.** Create `ProductTable` and `ProductRow` components. Display all required columns. Add sort and filter controls. Style rows with hover states. No expand behavior yet.
-
-5. **Add the expandable detail panel.** On row click, expand `ProductDetailPanel` inline. Build all three columns: Performance Metrics (with `SellThroughChart` and `SizeCurveChart`), Customer Voice (with `ReturnBreakdown` and `SentimentPanel`), and AI Insights (`AIInsightCard`). Collapse on second click or when another row is opened.
-
-6. **Polish and QA.** Check visual consistency against the design system. Test sort/filter behavior. Confirm the panel opens and closes cleanly. Check layout at 1280px, 1024px, and 768px widths.
-
-7. **Finalize repo.** Add `README.md` with setup instructions. Populate `.claude/project-context.md` with a summary of what was built and any design decisions made. Commit with message "Final build — ready for review." Deploy to Vercel and confirm the live URL works.
 
 ---
 
@@ -287,23 +310,27 @@ Work through the build in this order. Commit to GitHub after each major step wit
 
 | Criterion | Pass |
 |---|---|
-| Site loads and is accessible | Live Vercel URL works, optionally password-protected |
-| Core flows work end to end | KPI tiles display computed values; table sorts and filters; row expands to show all three panel columns; AI insight card is present and readable |
-| Build matches this brief | Industry (women's sports apparel), user (buyer/category manager), and features match what's described here |
-| Design reflects the industry | Layout, color, and tone feel appropriate for an internal merchandising tool — analytical but not cold; premium but not decorative |
+| Site loads and is accessible | Live Vercel URL works |
+| Core flows work end to end | Season filter updates every chart on the page; KPI card actions scroll to the right section; chart metric toggles work; the inventory table filters and stays sorted by risk |
+| Build matches this brief | Industry (women's sports apparel), user (category manager), and the eight sections above match what's on the live site |
+| Design reflects the industry | Layout, color, and tone feel appropriate for an internal merchandising analytics tool — analytical but not cold; premium but not decorative |
 | Repo is organized | Folder structure matches above; README is present; commit history shows real progress |
-| AI scaffolding is in place | `.claude/` directory exists with context files |
+| AI scaffolding is in place | `.claude/` directory exists with context files that match the current build |
 
 ---
 
 ## Nice to Haves (Go Further)
 
-- Empty state: if all filters return no results, show a helpful message rather than a blank table
-- Styles at-risk count in the header tile is clickable and pre-filters the table to at-risk styles only
-- Sentiment score in the table row has a subtle color coding (green above 4.0, amber 3.0–3.9, red below 3.0)
-- The AI Insight card's recommended action has a one-click "Mark as reviewed" toggle so the buyer can track what they've already acted on (state lives in memory for the session)
-- Responsive behavior at 768px: table scrolls horizontally, detail panel stacks vertically
+- [x] Empty state: Category Performance chart shows a message if no seasons are selected
+- [x] At-risk KPI card is clickable and jumps to Recommended Product Actions
+- [x] Sell-through and return-rate cells in the inventory table are color-coded by value (green/amber/red)
+- [x] Inventory table stays sorted by computed risk score, not just status
+- [ ] Vercel deployment password protection (recommended in Tech Stack above; not yet enabled)
+- [ ] Inventory Health Table on narrow screens still requires horizontal scroll rather than a stacked/card layout
 
 ---
 
-*This brief is the design spec. The build should reflect the intent described here. If the AI assistant makes a decision not covered in the brief, document it in `.claude/component-notes.md`.*
+*This brief is the design spec. The build should reflect the intent described
+here. If a future session makes a decision not covered here, document it in
+`.claude/component-notes.md` and update this file's revision note — don't
+let the two drift apart again.*

@@ -1,12 +1,14 @@
-# Assortment Intelligence Dashboard
+# Product Inventory Dashboard
 
-A mid-season assortment management tool for **Maeven Label**, a fictional
-women's sports apparel brand. Built for the Protogen Academy P301 case study.
+A mid-season assortment intelligence dashboard for **Maeven Label**, a
+fictional women's sports apparel brand. Built for the Protogen Academy P301
+case study.
 
-Category managers and buyers get one view of how their active styles are
-performing — sell-through, returns, customer sentiment — with an AI-generated
-insight and one recommended action per style, instead of piecing that story
-together across three separate systems mid-season.
+A category manager gets one page that answers, top to bottom: how is the
+assortment doing right now, what's driving that across categories/sizes/
+returns, what customers are actually saying, and what to do about it —
+ranked by impact — instead of piecing that story together across three
+separate systems mid-season.
 
 See [`BRIEF.md`](./BRIEF.md) for the full product spec and
 [`.claude/project-context.md`](./.claude/project-context.md) for build
@@ -14,23 +16,34 @@ decisions.
 
 ## Features
 
-- **Header KPIs**: average sell-through, styles at risk, average return rate,
-  average sentiment — always visible, computed live from the dataset.
-- **Product table**: sortable, filterable by season/category/at-risk status,
-  with an AI Insight status badge per row.
-- **Inline detail panel**: click a row to expand a three-column breakdown —
-  performance charts, customer voice (returns + reviews), and an AI Insight
-  card with a plain-language summary, driving signals, and one recommended
-  action.
-- **Mark as reviewed**: track which AI recommendations you've already acted
-  on (session-only state).
+- **Season filter**: multi-select dropdown covering the trailing year;
+  every chart below it reflects the selected season(s), down to a
+  month-by-month view when only one season is selected.
+- **Insight KPI cards**: Sell-Through Rate, Return Rate, Customer Sentiment,
+  and At-Risk Styles — each with a sparkline, a period delta, an AI-style
+  insight line, and an action (jump to the relevant section) or a stat.
+- **Category Performance Across Seasons**: multi-line trend chart across all
+  five categories, toggled between Sell-Through, Returns, and Revenue Index.
+- **Size Performance Trend** + **Why Are Sizes Trending?**: sell-through/
+  returns/growth by size, paired with ranked, confidence-scored demand
+  drivers.
+- **What's Driving Returns?** + **Cost Impact**: return-reason breakdown
+  paired with a financial summary and the single highest-leverage fix.
+- **Customer Voice Insights**: switchable Positive/Neutral/Negative review
+  themes, each with mention volume, delta, and which products/sizes drove it.
+- **Recommended Product Actions**: four ranked, AI-generated actions with
+  priority and projected impact.
+- **Inventory Health Table**: full per-style table, sorted by a computed
+  risk score by default, with a text filter by product or category.
 
 ## Tech stack
 
 - React 19 + Vite
 - Tailwind CSS v4 (utility classes, theme tokens in `src/index.css`)
-- Recharts for the sell-through trend and return-reason donut
-- Local JSON mock data (`src/data/assortment.json`) — no backend, no API calls
+- Recharts for all charts (trend lines, bar charts)
+- lucide-react for icons
+- Local JSON mock data (`src/data/assortment.json`) plus aggregate constants
+  in `src/utils/dataHelpers.js` — no backend, no API calls
 
 ## Getting started
 
@@ -50,6 +63,7 @@ npm run lint      # oxlint
 ## Design system
 
 Visual language follows **Voltline Analytics**: a cool platinum canvas, white
-cards with hairline borders, deep-ink typography, and a single electric lime
-accent reserved for CTAs and live-data highlights. Tokens live in
-`src/index.css`.
+cards with soft shadows, deep-ink typography, and a single electric lime
+accent reserved for CTAs and live-data highlights, with tone colors
+(success/warning/danger) used deliberately for status and risk. Tokens live
+in `src/index.css`.
